@@ -1,0 +1,29 @@
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JPanel;
+
+public class Trace extends JPanel{
+	
+	private static final long serialVersionUID = 1L;
+
+	public Trace(){
+		setVisible(true);
+		setSize(300,300);
+	}
+	
+	double f(double x) {
+		return (Math.cos(x / 5) + Math.sin(x / 7) +2) * getSize().height / 4;
+	}
+	
+	public void paintComponent(Graphics g){
+		removeAll();
+		g.setColor(new Color(170,136,188));
+		g.fillRect(0, 0, getWidth(), getHeight());
+		setLayout(null);
+
+		for(int x = 0; x < getSize().width; x++) {
+			g.drawLine(x,  (int)f(x),  x+1,  (int)f(x+1) );
+		}
+	}
+	
+}
