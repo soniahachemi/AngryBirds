@@ -5,7 +5,7 @@ public class Constante {
 	public static final int hauteur = 700;
 	
 	// 1 m = 20px
-	public static final int echelle = 20;
+	public static final int echelle = 50;
 	
 
 	public static final int hauteurSol = 100;
