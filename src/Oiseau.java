@@ -4,25 +4,43 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class Decor extends JPanel {
-	
-	private final Plan plan;
 
-	public Decor(){
-		setLayout(null);
-		plan = new Plan(new Coord(Constante.debTrajX,Constante.hauteur-Constante.hauteurSol));
-	}
+public class Oiseau extends JPanel{
+
+	private Coord coord;
+	private int largeur, hauteur;
 	
-	public Plan getPlan(){
-		return this.plan;
+	public Oiseau(){
+		this.coord = new Coord(0,Constante.hauteurLP+(hauteur/2));
+		largeur = 1*Constante.echelle;
+		hauteur = 1*Constante.echelle;
 	}
-	
+	public Oiseau(int l, int h){
+		this.coord = new Coord(0,100);
+		largeur = l;
+		hauteur = h;
+	}
+
+	public void placer(Plan plan) {
+		setBounds(plan.plan_Concret(coord).getX()-(largeur/2),plan.plan_Concret(coord).getY()-(hauteur/2),largeur,hauteur);
+	}
+
+	public void setX(int i) {
+		coord.setX(i);
+	}
+
+	public void setY(int i) {
+		coord.setY(i);
+	}
+
+	public Coord getCoord() {
+		return coord;
+	}
 	public void paintComponent(Graphics g){
-		g.setColor(Color.blue);
-		g.fillRect(0, 0, Constante.largeur, Constante.hauteur);
-		g.setColor(Color.green);
-		g.fillRect(0, Constante.hauteur - Constante.hauteurSol, Constante.largeur, Constante.hauteurSol);
-		g.setColor(Color.BLACK);
-		g.fillRect(Constante.debTrajX, Constante.hauteur-Constante.hauteurSol-Constante.hauteurLP,20, Constante.hauteurLP);
+		
+		g.setColor(Color.red);
+		g.fillOval(0, 0, largeur, hauteur);
+		g.setColor(Color.black);
+		g.fillOval(largeur/2, hauteur/2, 5, 5);
 	}
 }
