@@ -1,21 +1,25 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
-public class Fenetre extends JFrame{
+public class Main {
 
-	public Fenetre(){
-		this.setSize(this.getToolkit().getScreenSize());
-		this.setUndecorated(true);
-		//this.setSize(500,500);
-		this.setVisible(true);
-	}
+	private static Fenetre f;
 	
-	public void changerFond(JPanel fond){
-		this.getContentPane().removeAll();
-		revalidate();
-		this.setContentPane(fond);
-		//this.getContentPane().repaint();
-		this.revalidate();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		f = new Fenetre();
+		Decor decor = new Decor();
+		f.changerFond(decor);
+
+		
+		Oiseau o = new Oiseau();
+		o.placer(decor.getPlan());
+		decor.add(o);
+		
+		Runnable a = new Animation(o,decor,1,30.0);
+		new Thread(a).start();
+	}
+
+	public static Fenetre getFenetre(){
+		return f;
+		
 	}
 }
