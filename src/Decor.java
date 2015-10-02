@@ -23,6 +23,6 @@ public class Decor extends JPanel {
 		g.setColor(Color.green);
 		g.fillRect(0, Constante.hauteur - Constante.hauteurSol, Constante.largeur, Constante.hauteurSol);
 		g.setColor(Color.BLACK);
-		g.fillRect(Constante.debTrajX, Constante.hauteur-Constante.hauteurSol-Constante.hauteurLP,20, Constante.hauteurLP);
+		g.fillRect(Constante.debTrajX-10, Constante.hauteur-Constante.hauteurSol-Constante.hauteurLP,20, Constante.hauteurLP);
 	}
 }
