@@ -3,8 +3,8 @@ import javax.swing.JFrame;
 
 public class Fenetre extends JFrame {
 
-	public Fenetre(){
-		this.setSize(Constante.largeur,Constante.hauteur);
+	public Fenetre(int l, int h){
+		this.setSize(l,h);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}

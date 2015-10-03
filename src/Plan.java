@@ -1,11 +1,11 @@
 /**
- * Un plan est un objet reprÃ©sentant un Plan, tel qu'on a l'habitude d'en rencontrer.
+ * Un plan est un objet représentant un Plan, tel qu'on a l'habitude d'en rencontrer.
  * Les coordonnees du point d'origine sont (0,0) dans le plan
  * mais sont differentes dans le JPanel contenant le plan.
  * Par exemple, dans un JPanel de 500x500, on peut creer un Plan dont l'origine
- * se trouve aux coordonnÃ©es(50,400) , en bas Ã  gauche donc.
- * Les x augmentent de gauche Ã  droite et les y de bas en haut.
- * Chaque coordonnÃ©es "concrÃ¨tes" du JPanel possÃ¨de donc un equivalent dans le plan 
+ * se trouve aux coordonnées(50,400) , en bas à gauche donc.
+ * Les x augmentent de gauche à droite et les y de bas en haut.
+ * Chaque coordonnées "concrètes" du JPanel possède donc un equivalent dans le plan 
  *
  */
 public class Plan {
@@ -25,6 +25,7 @@ public class Plan {
 	public int getYOrigin(){
 		return this.coordOrigin.getY();
 	}
+	
 	/**
 	 * Traduit des coordonnees du plan en coordonnees "concretes"
 	 * @return

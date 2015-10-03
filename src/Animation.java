@@ -3,12 +3,13 @@ public class Animation extends Thread{
 
 	private Oiseau o;
 	private Decor d;
-	private double vitesse,angle;
+	private double v0,angle;
+	private final double G = 9.81;
 	
-	public Animation(Oiseau o1, Decor d1, double vitesse1, double angle1){
+	public Animation(Oiseau o1, Decor d1, double v01, double angle1){
 		o=o1;
 		d=d1;
-		vitesse=vitesse1;
+		v0=v01;
 		angle=angle1;
 	}
 	
@@ -19,10 +20,20 @@ public class Animation extends Thread{
 				o.placer(d.getPlan());
 				Main.getFenetre().revalidate();
 				double rad = Math.toRadians(angle);
-				o.setX((int)((vitesse*Math.cos(rad))*t));
-				o.setY((int)((-(1/2)*9.81*Math.sqrt(t)+(vitesse*Math.sin(rad)*t))+Constante.hauteurLP));
-				sleep(10);
-				t+=10;
+				
+				double x = v0*Math.cos(rad)*t;
+				o.set_X((int)(x));
+				
+
+				double t1 = o.get_X()/(v0*Math.cos(rad));
+				
+				double y = (-(G/2))*t1*t1 + v0*Math.sin(rad)*t1 ;
+				o.set_Y((int)(y)+ d.getHauteurLP()+(o.getHauteur()/2));
+				
+
+
+				sleep(50);
+				t++;
 			}catch(Exception e){
 				
 			}
