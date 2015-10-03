@@ -14,15 +14,14 @@ public class Animation extends Thread{
 	}
 	
 	public void run(){
-		long t=0;
-		while(t<100000){
+		double t=0;
+		while(o.get_Y()> 0){
 			try{
-				o.placer(d.getPlan());
 				Main.getFenetre().revalidate();
 				double rad = Math.toRadians(angle);
 				
 				double x = v0*Math.cos(rad)*t;
-				o.set_X((int)(x));
+				o.set_X((int)(x*d.getEchelle()));
 				
 
 				double t1 = o.get_X()/(v0*Math.cos(rad));
@@ -31,9 +30,9 @@ public class Animation extends Thread{
 				o.set_Y((int)(y)+ d.getHauteurLP()+(o.getHauteur()/2));
 				
 
-
-				sleep(50);
-				t++;
+				o.placer(d.getPlan());
+				sleep(10);
+				t+=0.01;
 			}catch(Exception e){
 				
 			}

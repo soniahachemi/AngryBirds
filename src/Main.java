@@ -1,12 +1,13 @@
+import javax.swing.JOptionPane;
+
 
 public class Main {
 
 	private static Fenetre f;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		f = new Fenetre(1000,500);
-		//System.out.println(f.getContentPane().getSize());
+		f = new Fenetre(Constante.LARGEURDF,Constante.HAUTEURDF);
+		
 		Decor decor = new DecorDef(f.getContentPane().getSize(),50,1,1,1.7);
 		f.changerFond(decor);
 
@@ -15,9 +16,19 @@ public class Main {
 		decor.add(o);
 		o.placer(decor.getPlan());
 
+		double vitesse,angle;
+		
+		try{
+		    vitesse = Double.parseDouble(JOptionPane.showInputDialog(null,"Choisissez une vitesse : "));
+		    angle = Double.parseDouble(JOptionPane.showInputDialog(null, "Choisissez un angle ;"));
+		}catch(Exception e){
+			vitesse = 80;
+			angle = 40;
+		}
+
 		f.revalidate();
 		
-		Runnable a = new Animation(o,decor,50,40.0);
+		Runnable a = new Animation(o,decor,vitesse,angle);
 		new Thread(a).start();
 	}
 

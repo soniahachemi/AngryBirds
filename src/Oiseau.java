@@ -46,10 +46,14 @@ public class Oiseau extends JPanel{
 	}
 	public void paintComponent(Graphics g){
 		
-		g.setColor(Color.red);
+		g.setColor(new Color(229,229,100));
 		g.fillOval(0, 0, largeur, hauteur);
 		g.setColor(Color.black);
-		g.fillOval(largeur/2, hauteur/2, 5, 5);
+		g.fillOval(largeur/2-3, hauteur/2-3, 5, 5);
+		g.drawLine(largeur/3, hauteur/4, largeur/2, hauteur/2-4);
+		g.setColor(new Color(213,114,56));
+		g.fillOval(3*largeur/4, hauteur/3+3, largeur/4, 10);
+		
 	}
 	public int getLargeur() {
 		// TODO Auto-generated method stub

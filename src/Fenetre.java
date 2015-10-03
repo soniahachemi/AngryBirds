@@ -1,17 +1,18 @@
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 public class Fenetre extends JFrame {
 
 	public Fenetre(int l, int h){
 		this.setSize(l,h);
+		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	public void changerFond(Decor decor) {
-		// TODO Auto-generated method stub
-		setContentPane(decor);
+	public void changerFond(JPanel fond) {
+		setContentPane(fond);
 		revalidate();
 	}
 }

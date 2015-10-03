@@ -58,9 +58,6 @@ public class DecorDef extends Decor {
 		posDep = (int)(posDepM*echelle);
 		
 		plan = new Plan(new Coord(posDep,hauteur-hauteurSol)); 
-	
-		System.out.println(hauteur);
-
 	}
 	
 	public Plan getPlan(){
@@ -68,11 +65,12 @@ public class DecorDef extends Decor {
 	}
 	
 	public void paintComponent(Graphics g){
-		g.setColor(Color.blue);
+		
+		g.setColor(new Color(91,158,238));
 		g.fillRect(0, 0, largeur, hauteur);
-		g.setColor(Color.green);
-		g.fillRect(0, hauteur-hauteurSol, largeur, hauteur);
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(103,198,55));
+		g.fillRect(0, hauteur-hauteurSol, largeur, hauteurSol);
+		g.setColor(new Color(138,104,44));
 		g.fillRect(posDep-10, hauteur-hauteurSol-hauteurLP,20, hauteurLP);
 		g.setColor(Color.black);
 		int d = this.getWidth() - echelle -20;
