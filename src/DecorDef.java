@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class DecorDef extends Decor {
 	
@@ -12,6 +13,7 @@ public class DecorDef extends Decor {
 	private final int echelle;
 	private final Plan plan; 
 
+	private ArrayList<Cible> cibles;
 	
 	// hauteur en px
 	private final int hauteur;	
@@ -41,6 +43,8 @@ public class DecorDef extends Decor {
 	public DecorDef(Dimension d,int ech,double hautSol,double posDebTraj,double hautLP){
 		setLayout(null);
 		echelle = ech;
+		
+		cibles = new ArrayList<Cible>();
 		
 		largeur = (int)d.getWidth();
 		largeurM = largeur/echelle;
@@ -130,5 +134,29 @@ public class DecorDef extends Decor {
 	public double getHauteurLPM() {
 		// TODO Auto-generated method stub
 		return hauteurLPM;
+	}
+
+	@Override
+	public ArrayList<Cible> getCibles() {
+		// TODO Auto-generated method stub
+		return cibles;
+	}
+
+	@Override
+	public boolean placeLibre(int x, int y, int l, int h) {
+		// TODO Auto-generated method stub
+		for(Cible c : cibles){
+			if(x +l > c.get_X() && x < (c.get_X() + c.getLargeur()) 
+			&& y+h > c.get_Y() && y < ( c.get_Y() + c.getHauteur()))
+				return false;
+		}
+		return true;
+	}
+	
+	public boolean gagne(){
+		for(Cible c : cibles){
+			if(!c.estTouche()) return false;
+		}
+		return true;
 	}
 }

@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 
 public class Animation extends Thread{
 
@@ -29,13 +31,22 @@ public class Animation extends Thread{
 				double y = (-(G/2))*t1*t1 + v0*Math.sin(rad)*t1 ;
 				o.set_Y((int)(y)+ d.getHauteurLP()+(o.getHauteur()/2));
 				
-
+				
 				o.placer(d.getPlan());
+				for(Cible c : d.getCibles()){
+					if(o.get_X() +o.getLargeur() > c.get_X() && x < (c.get_X() + c.getLargeur()) 
+					&& o.get_Y() +o.getHauteur() > c.get_Y() && y < ( c.get_Y() + c.getHauteur())){
+						c.toucher();
+						d.repaint();
+					}
+				}
+				
 				sleep(10);
 				t+=0.01;
 			}catch(Exception e){
 				
 			}
 		}
+		JOptionPane.showMessageDialog(null, (d.gagne()?"Gagné !":"Perdu !"), "Fin", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

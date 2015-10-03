@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public abstract class Decor extends JPanel {
@@ -15,8 +17,9 @@ public abstract class Decor extends JPanel {
 	 */
 	public abstract int getEchelle();
 	
+	public abstract ArrayList<Cible> getCibles();
 	
-	
+	public abstract boolean placeLibre(int x, int y, int l, int h);
 	
 	/**
 	 * Renvoie la largeur du decor en px
@@ -75,5 +78,5 @@ public abstract class Decor extends JPanel {
 	public abstract double getHauteurLPM();
 	
 
-	
+	public abstract boolean gagne();
 }

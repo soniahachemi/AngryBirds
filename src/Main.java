@@ -14,22 +14,29 @@ public class Main {
 		
 		Oiseau o = new Oiseau(decor);
 		decor.add(o);
-		o.placer(decor.getPlan());
-
-		double vitesse,angle;
 		
-		try{
-		    vitesse = Double.parseDouble(JOptionPane.showInputDialog(null,"Choisissez une vitesse : "));
-		    angle = Double.parseDouble(JOptionPane.showInputDialog(null, "Choisissez un angle ;"));
-		}catch(Exception e){
-			vitesse = 80;
-			angle = 40;
-		}
-
-		f.revalidate();
+		Cible c = new Cible(decor);
+		decor.add(c);
+		c.placer(decor.getPlan());
 		
-		Runnable a = new Animation(o,decor,vitesse,angle);
-		new Thread(a).start();
+			o.set_X(0);
+			o.set_Y(decor.getHauteurLP());
+			o.placer(decor.getPlan());
+	
+			double vitesse,angle;
+			
+			try{
+			    vitesse = Double.parseDouble(JOptionPane.showInputDialog(null,"Choisissez une vitesse : "));
+			    angle = Double.parseDouble(JOptionPane.showInputDialog(null, "Choisissez un angle ;"));
+			}catch(Exception e){
+				vitesse = 80;
+				angle = 40;
+			}
+	
+			f.revalidate();
+			
+			Runnable a = new Animation(o,decor,vitesse,angle);
+			new Thread(a).start();
 	}
 
 	public static Fenetre getFenetre(){
