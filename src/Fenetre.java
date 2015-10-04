@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 
 public class Fenetre extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	public Fenetre(int l, int h){
 		this.setSize(l,h);
 		this.setResizable(false);

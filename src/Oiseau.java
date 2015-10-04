@@ -1,12 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
-
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 
 public class Oiseau extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	// coord par rapport au plan
 	private Coord coord;
 	private int largeur, hauteur;

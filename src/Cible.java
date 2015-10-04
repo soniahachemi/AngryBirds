@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 public class Cible extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	private Coord coord;
 	private boolean touche;
 	private int hauteur,largeur;

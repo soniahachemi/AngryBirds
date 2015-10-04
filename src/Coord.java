@@ -20,5 +20,8 @@ public class Coord {
 	public void setY(int y1){
 		y = y1;
 	}
+	public boolean equals(Coord c){
+		return this.y== c.getY() && this.x == c.getX();
+	}
 
 }
