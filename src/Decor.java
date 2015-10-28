@@ -79,4 +79,6 @@ public abstract class Decor extends JPanel {
 	
 
 	public abstract boolean gagne();
+
+	public abstract void dessinerBec(Oiseau oiseau);
 }

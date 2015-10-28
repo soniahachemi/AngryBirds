@@ -38,7 +38,7 @@ public class DecorDef extends Decor {
 	// hauteur du lancepierre en metre
 	private final double hauteurLPM;
 		
-	
+	private Oiseau oiseau;
 
 	public DecorDef(Dimension d,int ech,double hautSol,double posDebTraj,double hautLP){
 		setLayout(null);
@@ -81,6 +81,14 @@ public class DecorDef extends Decor {
 		g.drawLine(d,20,d,20+echelle);
 		g.drawLine(d,20+echelle,d+echelle,20+echelle);
 
+		if(oiseau != null){
+			Coord ois = plan.plan_Concret(oiseau.getCoord());
+			Coord proch = plan.plan_Concret(oiseau.getProchaineCoord());
+			g.drawLine(ois.getX(), ois.getY(),
+					proch.getX(), proch.getY());
+		}
+		
+		
 		revalidate();
 	}
 
@@ -158,5 +166,13 @@ public class DecorDef extends Decor {
 			if(!c.estTouche()) return false;
 		}
 		return true;
+	}
+
+	@Override
+	public void dessinerBec(Oiseau o) {
+		// TODO Auto-generated method stub
+		
+		this.oiseau = o;
+		repaint();
 	}
 }

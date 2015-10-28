@@ -19,9 +19,7 @@ public class Main {
 		decor.add(c);
 		c.placer(decor.getPlan());
 		
-			o.set_X(0);
-			o.set_Y(decor.getHauteurLP());
-			o.placer(decor.getPlan());
+		o.placer(decor.getPlan());
 	
 			double vitesse,angle;
 			

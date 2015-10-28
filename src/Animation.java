@@ -35,10 +35,20 @@ public class Animation extends Thread{
 				  double y = (-(G/2))*t1*t1 + v0*Math.sin(rad)*t1 ;
 				o.set_Y((int)(y)+ d.getHauteurLP()+(o.getHauteur()/2));
 				
-				
-				
-				
 				o.placer(d.getPlan());
+				
+				
+				double xP = v0*Math.cos(rad)*(t+0.01);
+				o.getProchaineCoord().setX((int)(xP*d.getEchelle()));
+
+				  double t1P = o.getProchaineCoord().getX()/(v0*Math.cos(rad));
+				
+				  double yP = (-(G/2))*t1P*t1P + v0*Math.sin(rad)*t1P ;
+				o.getProchaineCoord().setY((int)(yP)+ d.getHauteurLP()+(o.getHauteur()/2));
+				
+				
+				
+				
 				for(Cible c : d.getCibles()){
 					if(o.get_X() +o.getLargeur() > c.get_X() && x < (c.get_X() + c.getLargeur()) 
 					&& o.get_Y() +o.getHauteur() > c.get_Y() && y < ( c.get_Y() + c.getHauteur())){
