@@ -13,7 +13,11 @@ public class DecorDef extends Decor {
 	private final int echelle;
 	private final Plan plan; 
 
+	private ArrayList<Oiseau> oiseaux;
+	
 	private ArrayList<Cible> cibles;
+	
+	private ArrayList<Coord> pointsTraj;
 	
 	// hauteur en px
 	private final int hauteur;	
@@ -38,13 +42,15 @@ public class DecorDef extends Decor {
 	// hauteur du lancepierre en metre
 	private final double hauteurLPM;
 		
-	private Oiseau oiseau;
 
 	public DecorDef(Dimension d,int ech,double hautSol,double posDebTraj,double hautLP){
 		setLayout(null);
 		echelle = ech;
 		
 		cibles = new ArrayList<Cible>();
+		oiseaux = new ArrayList<Oiseau>();
+		pointsTraj = new ArrayList<Coord>();
+
 		
 		largeur = (int)d.getWidth();
 		largeurM = largeur/echelle;
@@ -81,13 +87,25 @@ public class DecorDef extends Decor {
 		g.drawLine(d,20,d,20+echelle);
 		g.drawLine(d,20+echelle,d+echelle,20+echelle);
 
-		if(oiseau != null){
-			Coord ois = plan.plan_Concret(oiseau.getCoord());
-			Coord proch = plan.plan_Concret(oiseau.getProchaineCoord());
-			g.drawLine(ois.getX(), ois.getY(),
-					proch.getX(), proch.getY());
+		for(Oiseau o : oiseaux){
+			g.setColor(Color.yellow);
+			Coord coordPos = plan.plan_Concret(o.getCoord());
+			g.fillOval(coordPos.getX()-o.getTaille()/2,coordPos.getY()-o.getTaille()/2, o.getTaille(), o.getTaille());
+			Coord coordPos2 = plan.plan_Concret(o.getProchaineCoord());
+			g.drawLine(coordPos.getX(), coordPos.getY(),
+					coordPos2.getX(), coordPos2.getY());
 		}
-		
+		for(Cible c : cibles){
+			if(c.estTouche()) g.setColor(Color.red);
+			else g.setColor(Color.blue);
+			Coord coordPos = plan.plan_Concret(c.getCoord());
+			g.fillOval(coordPos.getX()-c.getTaille()/2,coordPos.getY()-c.getTaille()/2, c.getTaille(), c.getTaille());
+		}
+		for(Coord point : pointsTraj){
+			g.setColor(Color.black);
+			Coord coordPos = plan.plan_Concret(point);
+			g.fillOval(coordPos.getX()-1,coordPos.getY()-1,2,2);
+		}
 		
 		revalidate();
 	}
@@ -151,12 +169,11 @@ public class DecorDef extends Decor {
 	}
 
 	@Override
-	public boolean placeLibre(int x, int y, int l, int h) {
+	public boolean placeLibre(int x, int y, int taille) {
 		// TODO Auto-generated method stub
 		for(Cible c : cibles){
-			if(x +l > c.get_X() && x < (c.get_X() + c.getLargeur()) 
-			&& y+h > c.get_Y() && y < ( c.get_Y() + c.getHauteur()))
-				return false;
+				if(c.getCoord().distance(new Coord(x,y)) < (c.getTaille()/2 + taille/2)) 
+						return false;
 		}
 		return true;
 	}
@@ -169,10 +186,28 @@ public class DecorDef extends Decor {
 	}
 
 	@Override
-	public void dessinerBec(Oiseau o) {
+	public ArrayList<Oiseau> getOiseaux() {
 		// TODO Auto-generated method stub
-		
-		this.oiseau = o;
-		repaint();
+		return oiseaux;
+	}
+
+	@Override
+	public void ajouterCible(Cible c) {
+		// TODO Auto-generated method stub
+		cibles.add(c);
+	}
+
+	@Override
+	public void ajouterOiseau(Oiseau o) {
+		// TODO Auto-generated method stub
+		oiseaux.add(o);
+	}
+	public void ajouterPoint(Coord c) {
+		// TODO Auto-generated method stub
+		pointsTraj.add(c);
+	}
+	public void viderPointsTraj() {
+		// TODO Auto-generated method stub
+		pointsTraj = new ArrayList<Coord>();
 	}
 }

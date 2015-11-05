@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 public class Main {
 
 	private static Fenetre f;
+	public static int compteur =0;
 	
 	public static void main(String[] args) {
 		f = new Fenetre(Constante.LARGEURDF,Constante.HAUTEURDF);
@@ -13,28 +14,13 @@ public class Main {
 
 		
 		Oiseau o = new Oiseau(decor);
-		decor.add(o);
+		decor.ajouterOiseau(o);
 		
-		Cible c = new Cible(decor);
-		decor.add(c);
-		c.placer(decor.getPlan());
-		
-		o.placer(decor.getPlan());
-	
-			double vitesse,angle;
-			
-			try{
-			    vitesse = Double.parseDouble(JOptionPane.showInputDialog(null,"Choisissez une vitesse : "));
-			    angle = Double.parseDouble(JOptionPane.showInputDialog(null, "Choisissez un angle ;"));
-			}catch(Exception e){
-				vitesse = 80;
-				angle = 40;
-			}
-	
-			f.revalidate();
-			
-			Runnable a = new Animation(o,decor,vitesse,angle);
-			new Thread(a).start();
+		for(int i=0;i<10;i++){
+			Cible c = new Cible(decor);
+			decor.ajouterCible(c);
+		}
+			new Animation(decor);
 	}
 
 	public static Fenetre getFenetre(){

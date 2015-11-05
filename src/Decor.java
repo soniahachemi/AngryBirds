@@ -19,7 +19,14 @@ public abstract class Decor extends JPanel {
 	
 	public abstract ArrayList<Cible> getCibles();
 	
-	public abstract boolean placeLibre(int x, int y, int l, int h);
+	public abstract ArrayList<Oiseau> getOiseaux();
+	
+	public abstract void ajouterCible(Cible c);
+	
+	public abstract void ajouterOiseau(Oiseau o);
+
+	
+	public abstract boolean placeLibre(int x, int y,int taille);
 	
 	/**
 	 * Renvoie la largeur du decor en px
@@ -80,5 +87,6 @@ public abstract class Decor extends JPanel {
 
 	public abstract boolean gagne();
 
-	public abstract void dessinerBec(Oiseau oiseau);
+	public abstract void ajouterPoint(Coord c);
+	public abstract void viderPointsTraj();
 }
