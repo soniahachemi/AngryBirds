@@ -12,6 +12,10 @@ public class TestCible {
 	@Test
 	public final void testPlaceLibre() {
 
+		Cible cible = new Cible(dd);
+		dd.ajouterCible(cible);
+		
+		assertTrue(dd.placeLibre(cible.get_X(), cible.get_Y(), cible.getTaille())==false);
 		assertTrue(dd.placeLibre(80, 80, 10));
 		assertTrue(dd.placeLibre(50, 50, 20));
 
