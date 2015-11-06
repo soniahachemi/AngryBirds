@@ -18,7 +18,7 @@ public class Animation {
 		d=d1;
 		for(Oiseau o : d.getOiseaux()){
 			if(!o.aFiniVol()){
-				if(new Random().nextInt(10)>2) trajectoireParabole(o);
+				if(Main.compteur!=2) trajectoireParabole(o);
 				else trajectoireSinusoidale(o);
 			}
 		}
