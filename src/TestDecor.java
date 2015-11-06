@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import org.junit.Test;
 
-public class TestCible {
+public class TestDecor {
 	DecorDef dd = new DecorDef(new Dimension(1200, 600), 50, 1, 1, 1.7);
 
 	@Test
