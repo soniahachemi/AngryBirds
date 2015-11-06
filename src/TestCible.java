@@ -2,7 +2,6 @@
 import static org.junit.Assert.*;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -12,12 +11,12 @@ public class TestCible {
 	@Test
 	public final void testPlaceLibre() {
 
-		Cible cible = new Cible(dd);
+		Cible cible = new Cible(dd,new Coord(10,10),20);
 		dd.ajouterCible(cible);
 		
 		assertFalse(dd.placeLibre(cible.get_X(), cible.get_Y(), cible.getTaille()));
-		assertTrue(dd.placeLibre(80, 80, 10));
-		assertTrue(dd.placeLibre(50, 50, 20));
+		assertTrue(dd.placeLibre(cible.get_X()+cible.getTaille()+1, cible.get_Y(), 10));
+		assertTrue(dd.placeLibre(cible.get_X(),cible.get_Y()-cible.getTaille()-1, 20));
 
 	}
 

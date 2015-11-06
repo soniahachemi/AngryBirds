@@ -10,8 +10,8 @@ public class TestCoord {
 
 		Coord coord = new Coord(1, 1);
 
-		assertTrue(coord.distance(new Coord(3, 3)) == (int) (Math.sqrt(8)));
-		assertTrue(coord.distance(new Coord(1, 5)) == (int) (Math.sqrt(16)));
+		assertTrue(coord.distance(new Coord(3, 3)) == (Math.sqrt(8)));
+		assertTrue(coord.distance(new Coord(1, 5)) == (Math.sqrt(16)));
 
 	}
 
@@ -21,6 +21,7 @@ public class TestCoord {
 		Coord coord = new Coord(10, 10);
 
 		assertTrue(coord.equals(new Coord(10, 10)));
+		assertTrue(coord.distance(new Coord(10, 10)) == 0);
 
 	}
 
