@@ -70,7 +70,7 @@ public class Animation {
 	// Renvoi les coordonnes en fonction du temps la vitesse et l'angle
 	Coord coordParabole(double t,double vitesse,double angle){
 		double rad = Math.toRadians(angle);
-		double x = 0.8*vitesse*Math.cos(rad)*t;
+		double x = vitesse*Math.cos(rad)*t;
 		int xEch = (int)(x*d.getEchelle());
 		
 		double truc = xEch /(vitesse*Math.cos(rad));
