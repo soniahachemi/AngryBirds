@@ -1,11 +1,6 @@
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 
 public class Animation {

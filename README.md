@@ -1,5 +1,6 @@
-#AngryBirds
+Classe principale : 
+Main
 
-test
-
-test2
+Librairies : 
+JRE System Library [jre1.8.0_65]
+JUnit 4
