@@ -13,15 +13,34 @@ public class Plan {
 	// Les coordonnees "concretes" du point d'origine
 	private final Coord coordOrigin;
 	
+	/**
+	 * Constructeur
+	 * @param coord
+	 */
 	public Plan(Coord coord){
 		this.coordOrigin = coord;
 	}
+	
+	/**
+	 * Retourne les coordonnes d origine
+	 * @return
+	 */
 	public Coord getCoordOrigin(){
 		return this.coordOrigin;
 	}
+	
+	/**
+	 * Retourne x des coords d origine
+	 * @return
+	 */
 	public int getXOrigin(){
 		return this.coordOrigin.getX();
 	}
+	
+	/**
+	 * Retourne y des coords d origine
+	 * @return
+	 */
 	public int getYOrigin(){
 		return this.coordOrigin.getY();
 	}

@@ -1,24 +1,45 @@
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+
+/**
+ * Classe Animation, gérant les différentes trajectoires de l'oiseau
+ * @author Quentin  Spinnewyn
+ *
+ */
 public class Animation {
 
 	private Decor d;
 	double t;
 
+	/**
+	 * Constructeur
+	 * @param d1 : decor
+	 */
 	
 	public Animation(Decor d1){
 		d=d1;
 		for(Oiseau o : d.getOiseaux()){
 			if(!o.aFiniVol()){
-				if(Main.compteur!=9) trajectoireParabole(o);
+				if(new Random().nextInt(10)>2) trajectoireParabole(o);
 				else trajectoireSinusoidale(o);
 			}
 		}
 	}
 	
+	
+	/**
+	 * Methode pour la trajectoire de la parabole
+	 * Fonctionne grace a vitesse et angle
+	 * Utilisation d'un timer
+	 * @param o
+	 */
 	public void trajectoireParabole(Oiseau o){
 		t=0;
 		double vitesse = 40+new Random().nextInt(80);
@@ -65,7 +86,7 @@ public class Animation {
 	// Renvoi les coordonnes en fonction du temps la vitesse et l'angle
 	Coord coordParabole(double t,double vitesse,double angle){
 		double rad = Math.toRadians(angle);
-		double x = vitesse*Math.cos(rad)*t;
+		double x = 0.8*vitesse*Math.cos(rad)*t;
 		int xEch = (int)(x*d.getEchelle());
 		
 		double truc = xEch /(vitesse*Math.cos(rad));
@@ -78,7 +99,12 @@ public class Animation {
 	}
 
 	
-	
+	/**
+	 * Methode trajectoire differente
+	 * Petit bonus : l oiseau fait une trajectoire sinusoidale
+	 * Utilisation d un timer
+	 * @param o
+	 */
 	public void trajectoireSinusoidale(Oiseau o){
 		t=0;
 		long delay = 1000; // On commence dans 1 seconde

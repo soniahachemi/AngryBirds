@@ -3,20 +3,19 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+/**
+ * Classe DecorDef
+ * Herite de Decor
+ * @author Quentin  Spinnewyn
+ *
+ */
 public class DecorDef extends Decor {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
 	private final int echelle;
 	private final Plan plan; 
-
 	private ArrayList<Oiseau> oiseaux;
-	
 	private ArrayList<Cible> cibles;
-	
 	private ArrayList<Coord> pointsTraj;
 	
 	// hauteur en px
@@ -43,6 +42,14 @@ public class DecorDef extends Decor {
 	private final double hauteurLPM;
 		
 
+	/**
+	 * Constructeur DecorDef
+	 * @param d
+	 * @param ech
+	 * @param hautSol
+	 * @param posDebTraj
+	 * @param hautLP
+	 */
 	public DecorDef(Dimension d,int ech,double hautSol,double posDebTraj,double hautLP){
 		setLayout(null);
 		echelle = ech;
@@ -70,10 +77,16 @@ public class DecorDef extends Decor {
 		plan = new Plan(new Coord(posDep,hauteur-hauteurSol)); 
 	}
 	
+	/**
+	 * Retourne le plan
+	 */
 	public Plan getPlan(){
 		return plan;
 	}
 	
+	/**
+	 * Methode paintComponent
+	 */
 	public void paintComponent(Graphics g){
 		
 		g.setColor(new Color(91,158,238));
@@ -87,6 +100,7 @@ public class DecorDef extends Decor {
 		g.drawLine(d,20,d,20+echelle);
 		g.drawLine(d,20+echelle,d+echelle,20+echelle);
 
+		//placement oiseau
 		for(Oiseau o : oiseaux){
 			g.setColor(Color.yellow);
 			Coord coordPos = plan.plan_Concret(o.getCoord());
@@ -95,12 +109,16 @@ public class DecorDef extends Decor {
 			g.drawLine(coordPos.getX(), coordPos.getY(),
 					coordPos2.getX(), coordPos2.getY());
 		}
+		
+		//placement cibles
 		for(Cible c : cibles){
 			if(c.estTouche()) g.setColor(Color.red);
 			else g.setColor(Color.blue);
 			Coord coordPos = plan.plan_Concret(c.getCoord());
 			g.fillOval(coordPos.getX()-c.getTaille()/2,coordPos.getY()-c.getTaille()/2, c.getTaille(), c.getTaille());
 		}
+		
+		//placements pointilles trajectoire
 		for(Coord point : pointsTraj){
 			g.setColor(Color.black);
 			Coord coordPos = plan.plan_Concret(point);
@@ -110,64 +128,103 @@ public class DecorDef extends Decor {
 		revalidate();
 	}
 
+	/**
+	 * Retourne la hauteurLP
+	 */
 	public int getHauteurLP() {
 		return hauteurLP;
 	}
 
+	/**
+	 * Retourne l echelle
+	 */
 	public int getEchelle() {
 		return echelle;
 	}
 
+	/**
+	 * Retourne la largeur
+	 */
 	public int getLargeur() {
 		return largeur;
 	}
 
+	/**
+	 * Retourne la hauteur
+	 */
 	public int getHauteur() {
 		// TODO Auto-generated method stub
 		return hauteur;
 	}
 
+	/**
+	 * Retourne la hauteur sol
+	 */
 	public int getHauteurSol() {
 		// TODO Auto-generated method stub
 		return hauteurSol;
 	}
 
+	/**
+	 * Retourne la position de depart de l oiseau
+	 */
 	public int getposDep() {
 		// TODO Auto-generated method stub
 		return posDep;
 	}
 
+	/**
+	 * Retourne largeurM
+	 */
 	public double getLargeurM() {
 		// TODO Auto-generated method stub
 		return largeurM;
 	}
 
+	/**
+	 * Retourne hauteurM
+	 */
 	public double getHauteurM() {
 		// TODO Auto-generated method stub
 		return hauteurM;
 	}
 
+	/**
+	 * Retourne hauteurSolM
+	 */
 	public double getHauteurSolM() {
 		// TODO Auto-generated method stub
 		return hauteurSolM;
 	}
 
+	/**
+	 * Retourne position depart M
+	 */
 	public double getposDepM() {
 		// TODO Auto-generated method stub
 		return posDepM;
 	}
 
+	/**
+	 * Retourne hauteurLPM
+	 */
 	public double getHauteurLPM() {
 		// TODO Auto-generated method stub
 		return hauteurLPM;
 	}
 
+	/**
+	 * Retourne liste de cibles
+	 */
 	@Override
 	public ArrayList<Cible> getCibles() {
 		// TODO Auto-generated method stub
 		return cibles;
 	}
 
+	/**
+	 * Place librement les cibles
+	 */
 	@Override
 	public boolean placeLibre(int x, int y, int taille) {
 		// TODO Auto-generated method stub
@@ -178,6 +235,9 @@ public class DecorDef extends Decor {
 		return true;
 	}
 	
+	/**
+	 * Gagne si la cible est touchee
+	 */
 	public boolean gagne(){
 		for(Cible c : cibles){
 			if(!c.estTouche()) return false;
@@ -185,27 +245,44 @@ public class DecorDef extends Decor {
 		return true;
 	}
 
+	/**
+	 * Retourne liste oiseau	
+	 */
 	@Override
 	public ArrayList<Oiseau> getOiseaux() {
 		// TODO Auto-generated method stub
 		return oiseaux;
 	}
 
+	/**
+	 * Ajoute une cible
+	 */
 	@Override
 	public void ajouterCible(Cible c) {
 		// TODO Auto-generated method stub
 		cibles.add(c);
 	}
 
+	/**
+	 * Ajoute l oiseau
+	 */
 	@Override
 	public void ajouterOiseau(Oiseau o) {
 		// TODO Auto-generated method stub
 		oiseaux.add(o);
 	}
+	
+	/**
+	 * Ajout pointilles trajectoire
+	 */
 	public void ajouterPoint(Coord c) {
 		// TODO Auto-generated method stub
 		pointsTraj.add(c);
 	}
+	
+	/**
+	 * Efface les pointilles de trajectoire
+	 */
 	public void viderPointsTraj() {
 		// TODO Auto-generated method stub
 		pointsTraj = new ArrayList<Coord>();

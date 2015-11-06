@@ -2,6 +2,12 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+/**
+ * Classe Decor
+ * herite de JPanel
+ * @author Quentin  Spinnewyn
+ *
+ */
 public abstract class Decor extends JPanel {
 	private static final long serialVersionUID = 1L;
 
@@ -17,15 +23,37 @@ public abstract class Decor extends JPanel {
 	 */
 	public abstract int getEchelle();
 	
+	/**
+	 * Retourne liste de cibles
+	 * @return
+	 */
 	public abstract ArrayList<Cible> getCibles();
 	
+	/**
+	 * Retourne liste d oiseaux
+	 * @return
+	 */
 	public abstract ArrayList<Oiseau> getOiseaux();
 	
+	/**
+	 * Ajout cible
+	 * @param c
+	 */
 	public abstract void ajouterCible(Cible c);
 	
+	/**
+	 * Ajout oiseau
+	 * @param o
+	 */
 	public abstract void ajouterOiseau(Oiseau o);
 
-	
+	/**
+	 * Place librement sur la carte
+	 * @param x
+	 * @param y
+	 * @param taille
+	 * @return
+	 */
 	public abstract boolean placeLibre(int x, int y,int taille);
 	
 	/**
@@ -54,10 +82,7 @@ public abstract class Decor extends JPanel {
 	 */
 	public abstract int getHauteurLP();
 	
-	
-	
-	
-	
+
 	/**
 	 * Renvoie la largeur du decor en mètres
 	 */
@@ -84,9 +109,20 @@ public abstract class Decor extends JPanel {
 	 */
 	public abstract double getHauteurLPM();
 	
-
+	/**
+	 * Methode gagne
+	 * @return
+	 */
 	public abstract boolean gagne();
 
+	/**
+	 * Ajout point
+	 * @param c
+	 */
 	public abstract void ajouterPoint(Coord c);
+	
+	/**
+	 * Vide les pointilles qui suivent la trajectoire d une courbe
+	 */
 	public abstract void viderPointsTraj();
 }
