@@ -11,7 +11,7 @@ public class TestDecor {
 	@Test
 	public final void testPlaceLibre() {
 
-		Cible cible = new Cible(dd,new Coord(10,10),20);
+		Cible cible = new Cible(dd);
 		dd.ajouterCible(cible);
 		
 		assertFalse(dd.placeLibre(cible.get_X(), cible.get_Y(), cible.getTaille()));

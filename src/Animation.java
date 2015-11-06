@@ -1,11 +1,7 @@
-import java.awt.Color;
-import java.awt.Graphics;
+
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 
 /**
@@ -27,7 +23,7 @@ public class Animation {
 		d=d1;
 		for(Oiseau o : d.getOiseaux()){
 			if(!o.aFiniVol()){
-				if(new Random().nextInt(10)>2) trajectoireParabole(o);
+				if(Main.compteur!=9) trajectoireParabole(o);
 				else trajectoireSinusoidale(o);
 			}
 		}
@@ -86,7 +82,7 @@ public class Animation {
 	// Renvoi les coordonnes en fonction du temps la vitesse et l'angle
 	Coord coordParabole(double t,double vitesse,double angle){
 		double rad = Math.toRadians(angle);
-		double x = 0.8*vitesse*Math.cos(rad)*t;
+		double x = vitesse*Math.cos(rad)*t;
 		int xEch = (int)(x*d.getEchelle());
 		
 		double truc = xEch /(vitesse*Math.cos(rad));

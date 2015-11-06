@@ -15,7 +15,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		f = new Fenetre(Constante.LARGEURDF,Constante.HAUTEURDF);
+		f = new Fenetre(1200,700);
 		
 		Decor decor = new DecorDef(f.getContentPane().getSize(),50,1,1,1.7);
 		f.changerFond(decor);
