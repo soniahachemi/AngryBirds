@@ -1,6 +1,9 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 /**
@@ -40,6 +43,9 @@ public class DecorDef extends Decor {
 	private final double posDepM;
 	// hauteur du lancepierre en metre
 	private final double hauteurLPM;
+	
+	
+	private double angle,vitesse;
 		
 
 	/**
@@ -75,6 +81,75 @@ public class DecorDef extends Decor {
 		posDep = (int)(posDepM*echelle);
 		
 		plan = new Plan(new Coord(posDep,hauteur-hauteurSol)); 
+		this.setRequestFocusEnabled(true);
+		this.requestFocus();
+		this.addMouseMotionListener(new MouseMotionListener() {
+			
+			public void mouseMoved(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("mouse moved");
+			}
+			
+			public void mouseDragged(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+				if(oiseaux.get(0)!=null){
+					
+					Coord coord = plan.concret_Plan(new Coord(arg0.getX(),arg0.getY()));
+					
+					int dist = new Coord(0,hauteurLP).distance(coord);
+					if(dist <100 && oiseaux.get(0).get_X() <=0 ){
+						oiseaux.get(0).setCoord(coord);
+						repaint();
+						vitesse = 1.2*dist;
+						angle=0;
+						double tan=0;
+						if(oiseaux.get(0).get_X() <0 && oiseaux.get(0).get_Y()<hauteurLP ){
+							tan = (double)(oiseaux.get(0).get_Y() / (double)(-oiseaux.get(0).get_X()));
+							angle = Math.toDegrees(Math.atan(tan));
+						}
+						if(oiseaux.get(0).get_X() <0 && oiseaux.get(0).get_Y()>hauteurLP ){
+							tan = (double)(oiseaux.get(0).get_Y() / (double)(-oiseaux.get(0).get_X()));
+							angle = Math.toDegrees(Math.atan(tan)) *-1;
+						}
+
+
+					}
+				}
+			}
+		});
+		this.addMouseListener(new MouseListener() {
+			
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				lancerAnim();
+
+			}
+			
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	public void lancerAnim(){
+		new Animation(this,vitesse,angle);
 	}
 	
 	/**
