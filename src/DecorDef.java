@@ -190,7 +190,8 @@ public class DecorDef extends Decor {
 			if(c.estTouche()) g.setColor(Color.red);
 			else g.setColor(Color.blue);
 			Coord coordPos = plan.plan_Concret(c.getCoord());
-			g.fillOval(coordPos.getX()-c.getTaille()/2,coordPos.getY()-c.getTaille()/2, c.getTaille(), c.getTaille());
+			if(new Random().nextBoolean()) g.fillOval(coordPos.getX()-c.getTaille()/2,coordPos.getY()-c.getTaille()/2, c.getTaille(), c.getTaille());
+			else g.fillRect(coordPos.getX()-c.getTaille()/2,coordPos.getY()-c.getTaille()/2, c.getTaille(), c.getTaille());
 		}
 		
 		//placements pointilles trajectoire
