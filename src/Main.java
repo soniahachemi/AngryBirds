@@ -27,7 +27,7 @@ public class Main {
 			Cible c = new Cible(decor);
 			decor.ajouterCible(c);
 		}
-			new Animation(decor);
+		//	new Animation(decor);
 	}
 
 	/**
