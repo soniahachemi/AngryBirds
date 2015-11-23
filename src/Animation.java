@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 
 /**
- * Classe Animation, gérant les différentes trajectoires de l'oiseau
+ * Classe Animation, gï¿½rant les diffï¿½rentes trajectoires de l'oiseau
  * @author Quentin  Spinnewyn
  *
  */
@@ -13,18 +13,22 @@ public class Animation {
 
 	private Decor d;
 	double t;
+	
+	double vitesse,angle;
 
 	/**
 	 * Constructeur
 	 * @param d1 : decor
 	 */
 	
-	public Animation(Decor d1){
+	public Animation(Decor d1,double v,double a){
 		d=d1;
+		vitesse =v;
+		angle=a;
 		for(Oiseau o : d.getOiseaux()){
 			if(!o.aFiniVol()){
 				if(Main.compteur!=9) trajectoireParabole(o);
-				else trajectoireSinusoidale(o);
+				//else trajectoireSinusoidale(o);
 			}
 		}
 	}
@@ -36,14 +40,12 @@ public class Animation {
 	 * Utilisation d'un timer
 	 * @param o
 	 */
-	public void trajectoireParabole(Oiseau o){
+	public void trajectoireParabole(final Oiseau o){
 		t=0;
-		double vitesse = 40+new Random().nextInt(80);
-		double angle = 30+new Random().nextInt(60);
 		
-		long delay = 1000; // On commence dans 1 seconde
-		long period = 30; // Répéter toutes les 50 ms
-		Timer timer = new Timer(); 
+		long delay = 0; // On commence dans 1 seconde
+		long period = 30; // Rï¿½pï¿½ter toutes les 50 ms
+		final Timer timer = new Timer(); 
 		TimerTask timerTask = new TimerTask(){	
 			public void run()  { 
 				t+=0.01;
@@ -70,7 +72,7 @@ public class Animation {
 					if(Main.compteur==10) o.finirVol();
 					d.viderPointsTraj();
 					timer.cancel();
-					new Animation(d);
+					//new Animation(d,vitesse,angle);
 
 				}
 				
@@ -95,59 +97,7 @@ public class Animation {
 	}
 
 	
-	/**
-	 * Methode trajectoire differente
-	 * Petit bonus : l oiseau fait une trajectoire sinusoidale
-	 * Utilisation d un timer
-	 * @param o
-	 */
-	public void trajectoireSinusoidale(Oiseau o){
-		t=0;
-		long delay = 1000; // On commence dans 1 seconde
-		long period = 60; // Répéter toutes les 50 ms
-		Timer timer = new Timer(); 
-		TimerTask timerTask = new TimerTask(){	
-			public void run()  { 
-				t+=0.01;
-				o.setCoord(coordSinus(t));
-				d.ajouterPoint(o.getCoord());
-				
-				double t2 = t+0.002;
-				o.setProchaineCoord(coordSinus(t2));
-				while(o.getCoord().distance(o.getProchaineCoord()) < o.getTaille()/2 + 10){
-					t2+=0.002;
-					o.setProchaineCoord(coordSinus(t2));
-				}
-				for(Cible c : d.getCibles()){
-					int distanceX = c.get_X() - o.get_X();
-					if(distanceX <0) distanceX*=-1;
-					int distanceY = c.get_Y() - o.get_Y();
-					if(distanceY <0) distanceY*=-1;
-					if(distanceX < (c.getTaille()/2 + o.getTaille()/2) && distanceY < (c.getTaille()/2 + o.getTaille()/2)  )
-						c.toucher();
-				}
-				d.repaint();
-				if(o.get_X()>d.getLargeur()+o.getTaille() || t>=15000){
-					Main.compteur++;
-					if(Main.compteur==10) o.finirVol();
-					d.viderPointsTraj();
-					timer.cancel();
-					new Animation(d);
-
-				}
-				
-		}
-		};
-		timer.scheduleAtFixedRate(timerTask,delay, period);
-		}
 	
-	// Renvoi les coordonnes en fonction du temps la vitesse et l'angle
-	Coord coordSinus(double t){
-		int xEch = (int)(t*30*d.getEchelle());
-		int yEch=(int)(+120-(80*Math.sin(50*t))+d.getHauteurLP());
-		return new Coord(xEch,yEch);
-
-	}
 	
 	
 }
