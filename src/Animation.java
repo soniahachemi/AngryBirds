@@ -11,7 +11,7 @@ import java.util.TimerTask;
  */
 public class Animation {
 
-	private Decor d;
+	private DecorDef d;
 	double t;
 	
 	double vitesse,angle;
@@ -21,7 +21,7 @@ public class Animation {
 	 * @param d1 : decor
 	 */
 	
-	public Animation(Decor d1,double v,double a){
+	public Animation(DecorDef d1,double v,double a){
 		d=d1;
 		vitesse =v;
 		angle=a;
@@ -44,19 +44,22 @@ public class Animation {
 		t=0;
 		
 		long delay = 0; // On commence dans 1 seconde
-		long period = 30; // R�p�ter toutes les 50 ms
+		long period = 1; // R�p�ter toutes les 50 ms
 		final Timer timer = new Timer(); 
+		final int posDepX = 0;
+		final int posDepY = d.getHauteurLP();
 		TimerTask timerTask = new TimerTask(){	
 			public void run()  { 
-				t+=0.01;
-				o.setCoord(coordParabole(t,vitesse,angle));
+				t+=0.015;
+				
+				o.setCoord(coordParabole(t,vitesse,angle,posDepX,posDepY));
 				d.ajouterPoint(o.getCoord());
 				
 				double t2 = t+0.002;
-				o.setProchaineCoord(coordParabole(t2,vitesse,angle));
+				o.setProchaineCoord(coordParabole(t2,vitesse,angle,posDepX,posDepY));
 				while(o.getCoord().distance(o.getProchaineCoord()) < o.getTaille()/2 + 10){
 					t2+=0.002;
-					o.setProchaineCoord(coordParabole(t2,vitesse,angle));
+					o.setProchaineCoord(coordParabole(t2,vitesse,angle,posDepX,posDepY));
 				}
 				for(Cible c : d.getCibles()){
 					int distanceX = c.get_X() - o.get_X();
@@ -81,18 +84,21 @@ public class Animation {
 		timer.scheduleAtFixedRate(timerTask,delay, period);
 		}
 	
+	
+	
 	// Renvoi les coordonnes en fonction du temps la vitesse et l'angle
-	Coord coordParabole(double t,double vitesse,double angle){
-		double rad = Math.toRadians(angle);
-		double x = vitesse*Math.cos(rad)*t;
-		int xEch = (int)(x*d.getEchelle());
+	static Coord coordParabole(double t,double vitesse,double anglen,int posDepX,int posDepY){
+		if(anglen<91 && anglen>89) anglen=91;
+		double rad = Math.toRadians(anglen);
+		double x = vitesse*Math.cos(rad)*t +posDepX;
 		
-		double truc = xEch /(vitesse*Math.cos(rad));
+		
+		double truc = x /(vitesse*Math.cos(rad));
 		final double G =9.81;
 		 
 		double y = (-(G/2))*truc*truc + vitesse*Math.sin(rad)*truc ;
-		int yEch=(int)(y+d.getHauteurLP());
-		return new Coord(xEch,yEch);
+		int yEch=(int)(y+posDepY);
+		return new Coord((int) x,yEch);
 
 	}
 

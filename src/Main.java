@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		f = new Fenetre(1200,700);
 		
-		Decor decor = new DecorDef(f.getContentPane().getSize(),50,1,1,1.7);
+		DecorDef decor = new DecorDef(f.getContentPane().getWidth(),f.getContentPane().getHeight(),80,125,100);
 		f.changerFond(decor);
 
 		

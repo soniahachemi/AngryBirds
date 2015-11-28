@@ -17,9 +17,9 @@ public class Cible{
 	 * Constructeur
 	 * @param d : decor
 	 */
-	public Cible(Decor d){
+	public Cible(DecorDef d){
 		touche = false;
-		taille = (int)Math.floor(0.6*d.getEchelle());
+		taille = 25;
 		
 		//calcule les coords des cibles en random sur la carte
 		int x = d.getposDep()+ new Random().nextInt(d.getLargeur()-d.getposDep());

@@ -17,8 +17,8 @@ public class Oiseau {
 	 * Constructeur
 	 * @param d
 	 */
-	public Oiseau(Decor d){
-		taille = (int)Math.floor(0.6*d.getEchelle());
+	public Oiseau(DecorDef d){
+		taille = 25;
 		this.coord = new Coord(0,d.getHauteurLP()+(taille/2));
 		prochaineCoord = new Coord(25,d.getHauteurLP()+(taille/2));
 	}

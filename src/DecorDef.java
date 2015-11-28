@@ -7,16 +7,17 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 /**
  * Classe DecorDef
  * Herite de Decor
  * @author Quentin  Spinnewyn
  *
  */
-public class DecorDef extends Decor {
+public class DecorDef extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private final int echelle;
 	private final Plan plan; 
 	private ArrayList<Oiseau> oiseaux;
 	private ArrayList<Cible> cibles;
@@ -34,17 +35,6 @@ public class DecorDef extends Decor {
 	private final int hauteurLP;
 	
 	
-	// hauteur en metres
-	private final double hauteurM;
-	// largeur en metres
-	private final double largeurM;
-	// hauteur du sol en metres
-	private final double hauteurSolM;
-	// position de depart des trajectoires en metres
-	private final double posDepM;
-	// hauteur du lancepierre en metre
-	private final double hauteurLPM;
-	
 	
 	private double angle,vitesse;
 		
@@ -57,29 +47,23 @@ public class DecorDef extends Decor {
 	 * @param posDebTraj
 	 * @param hautLP
 	 */
-	public DecorDef(Dimension d,int ech,double hautSol,double posDebTraj,double hautLP){
+	public DecorDef(int l, int h,int hautSol,int posDebTraj,int hautLP){
 		setLayout(null);
-		echelle = ech;
 		
 		cibles = new ArrayList<Cible>();
 		oiseaux = new ArrayList<Oiseau>();
 		pointsTraj = new ArrayList<Coord>();
 
 		
-		largeur = (int)d.getWidth();
-		largeurM = largeur/echelle;
+		largeur = l;
 		
-		hauteur = (int)d.getHeight();
-		hauteurM = hauteur/echelle;
+		hauteur = h;
 		
-		hauteurSolM = hautSol;
-		hauteurSol = (int)(hauteurSolM*echelle);
+		hauteurSol = hautSol;
 
-		hauteurLPM = hautLP;
-		hauteurLP = (int)(hauteurLPM*echelle);
+		hauteurLP = hautLP;
 		
-		posDepM = posDebTraj;
-		posDep = (int)(posDepM*echelle);
+		posDep = posDebTraj;
 		
 		plan = new Plan(new Coord(posDep,hauteur-hauteurSol)); 
 		this.setRequestFocusEnabled(true);
@@ -88,7 +72,7 @@ public class DecorDef extends Decor {
 			
 			public void mouseMoved(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				System.out.println("mouse moved");
+			
 			}
 			
 			public void mouseDragged(MouseEvent arg0) {
@@ -98,23 +82,48 @@ public class DecorDef extends Decor {
 					
 					Coord coord = plan.concret_Plan(new Coord(arg0.getX(),arg0.getY()));
 					
+//					System.out.println(coord.getX()+"   "+coord.getY());
 					int dist = new Coord(0,hauteurLP).distance(coord);
-					if(dist <100 && oiseaux.get(0).get_X() <=0 ){
+					if(dist <120 ){
 						oiseaux.get(0).setCoord(coord);
 						repaint();
-						vitesse = 1.2*dist;
+						vitesse = dist+20;
 						angle=0;
 						double tan=0;
 						if(oiseaux.get(0).get_X() <0 && oiseaux.get(0).get_Y()<hauteurLP ){
-							tan = (double)(oiseaux.get(0).get_Y() / (double)(-oiseaux.get(0).get_X()));
+							double coteOppose = hauteurLP -oiseaux.get(0).get_Y();
+							double coteAdj = -oiseaux.get(0).get_X();
+							tan = coteOppose/coteAdj;
 							angle = Math.toDegrees(Math.atan(tan));
+							//System.out.println("premier cas "+angle );
 						}
 						if(oiseaux.get(0).get_X() <0 && oiseaux.get(0).get_Y()>hauteurLP ){
-							tan = (double)(oiseaux.get(0).get_Y() / (double)(-oiseaux.get(0).get_X()));
-							angle = Math.toDegrees(Math.atan(tan)) *-1;
+							double coteOppose = oiseaux.get(0).get_Y()-hauteurLP;
+							double coteAdj = -oiseaux.get(0).get_X();
+							tan = coteOppose/coteAdj;
+							angle = -Math.toDegrees(Math.atan(tan));
+							//System.out.println("2 cas "+angle );
+
 						}
+						if(oiseaux.get(0).get_X()>0 && oiseaux.get(0).get_Y()>hauteurLP ){
+							double coteOppose = oiseaux.get(0).get_Y()-hauteurLP;
+							double coteAdj = oiseaux.get(0).get_X();
+							tan = coteOppose/coteAdj;
+							angle = Math.toDegrees(Math.atan(tan))+180;
+							//System.out.println("3 cas angle = "+angle);
 
+						}
+						if(oiseaux.get(0).get_X()>0 && oiseaux.get(0).get_Y()<hauteurLP ){
+							double coteOppose = hauteurLP-oiseaux.get(0).get_Y();
+							double coteAdj = oiseaux.get(0).get_X();
+							tan = coteOppose/coteAdj;
+							angle = 90+Math.toDegrees(Math.atan(tan));
+							//System.out.println("4 cas angle = "+angle);
 
+						}
+						Coord coord2 = Animation.coordParabole(0, vitesse, angle, oiseaux.get(0).get_X(), oiseaux.get(0).get_Y());
+						System.out.println(oiseaux.get(0).get_X()+","+oiseaux.get(0).get_X()+" bec : "+coord2.getX()+","+coord2.getY());
+						oiseaux.get(0).setProchaineCoord(coord2);
 					}
 				}
 			}
@@ -123,7 +132,8 @@ public class DecorDef extends Decor {
 			
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				lancerAnim();
+				lancePierre();
+				//lancerAnim();
 
 			}
 			
@@ -152,6 +162,10 @@ public class DecorDef extends Decor {
 	public void lancerAnim(){
 		new Animation(this,vitesse,angle);
 	}
+	public void lancePierre(){
+		//new Animation(this,vitesse,angle);
+	}
+	
 	
 	/**
 	 * Retourne le plan
@@ -172,9 +186,6 @@ public class DecorDef extends Decor {
 		g.setColor(new Color(138,104,44));
 		g.fillRect(posDep-10, hauteur-hauteurSol-hauteurLP,20, hauteurLP);
 		g.setColor(Color.black);
-		int d = this.getWidth() - echelle -20;
-		g.drawLine(d,20,d,20+echelle);
-		g.drawLine(d,20+echelle,d+echelle,20+echelle);
 
 		//placement oiseau
 		for(Oiseau o : oiseaux){
@@ -196,11 +207,11 @@ public class DecorDef extends Decor {
 		}
 		
 		//placements pointilles trajectoire
-		for(Coord point : pointsTraj){
+		/*for(Coord point : pointsTraj){
 			g.setColor(Color.black);
 			Coord coordPos = plan.plan_Concret(point);
 			g.fillOval(coordPos.getX()-1,coordPos.getY()-1,2,2);
-		}
+		}*/
 		
 		revalidate();
 	}
@@ -212,12 +223,6 @@ public class DecorDef extends Decor {
 		return hauteurLP;
 	}
 
-	/**
-	 * Retourne l echelle
-	 */
-	public int getEchelle() {
-		return echelle;
-	}
 
 	/**
 	 * Retourne la largeur
@@ -250,50 +255,11 @@ public class DecorDef extends Decor {
 		return posDep;
 	}
 
-	/**
-	 * Retourne largeurM
-	 */
-	public double getLargeurM() {
-		// TODO Auto-generated method stub
-		return largeurM;
-	}
 
-	/**
-	 * Retourne hauteurM
-	 */
-	public double getHauteurM() {
-		// TODO Auto-generated method stub
-		return hauteurM;
-	}
-
-	/**
-	 * Retourne hauteurSolM
-	 */
-	public double getHauteurSolM() {
-		// TODO Auto-generated method stub
-		return hauteurSolM;
-	}
-
-	/**
-	 * Retourne position depart M
-	 */
-	public double getposDepM() {
-		// TODO Auto-generated method stub
-		return posDepM;
-	}
-
-	/**
-	 * Retourne hauteurLPM
-	 */
-	public double getHauteurLPM() {
-		// TODO Auto-generated method stub
-		return hauteurLPM;
-	}
 
 	/**
 	 * Retourne liste de cibles
 	 */
-	@Override
 	public ArrayList<Cible> getCibles() {
 		// TODO Auto-generated method stub
 		return cibles;
@@ -302,7 +268,6 @@ public class DecorDef extends Decor {
 	/**
 	 * Place librement les cibles
 	 */
-	@Override
 	public boolean placeLibre(int x, int y, int taille) {
 		// TODO Auto-generated method stub
 		for(Cible c : cibles){
@@ -325,7 +290,6 @@ public class DecorDef extends Decor {
 	/**
 	 * Retourne liste oiseau	
 	 */
-	@Override
 	public ArrayList<Oiseau> getOiseaux() {
 		// TODO Auto-generated method stub
 		return oiseaux;
@@ -334,7 +298,6 @@ public class DecorDef extends Decor {
 	/**
 	 * Ajoute une cible
 	 */
-	@Override
 	public void ajouterCible(Cible c) {
 		// TODO Auto-generated method stub
 		cibles.add(c);
@@ -343,7 +306,6 @@ public class DecorDef extends Decor {
 	/**
 	 * Ajoute l oiseau
 	 */
-	@Override
 	public void ajouterOiseau(Oiseau o) {
 		// TODO Auto-generated method stub
 		oiseaux.add(o);
