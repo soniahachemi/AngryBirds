@@ -6,21 +6,22 @@
 public class Oiseau {
 
 	// coord par rapport au plan
-	private Coord coord;
+	private Coord coord,prochaineCoord;
 	private int taille;
-	
-	private Coord prochaineCoord = new Coord(0,0);
-	
-	private boolean aFiniVol=false;
+	private DecorDef decor;
+	private boolean isFlying=false;
+	private boolean aFiniVol;
 	
 	/**
 	 * Constructeur
 	 * @param d
 	 */
 	public Oiseau(DecorDef d){
+		decor=d;
 		taille = 25;
-		this.coord = new Coord(0,d.getHauteurLP()+(taille/2));
-		prochaineCoord = new Coord(25,d.getHauteurLP()+(taille/2));
+		this.coord = new Coord(-taille/2-40,taille/2);
+		prochaineCoord = new Coord(-taille/2-20,taille/2);
+		aFiniVol=false;
 	}
 
 	/**
@@ -99,6 +100,21 @@ public class Oiseau {
 	 * Retourne fin vol
 	 * @return
 	 */
+	public boolean isFlying(){
+		return isFlying;
+	}
+	
+	/**
+	 * Methode finir le vol
+	 */
+	public void fly(){
+		isFlying=true;
+	}
+	
+	/**
+	 * Retourne fin vol
+	 * @return
+	 */
 	public boolean aFiniVol(){
 		return aFiniVol;
 	}
@@ -108,5 +124,12 @@ public class Oiseau {
 	 */
 	public void finirVol(){
 		aFiniVol=true;
+		isFlying=false;
+	}
+
+	public void placerSurLP() {
+		// TODO Auto-generated method stub
+		this.setCoord(new Coord(0,decor.getHauteurLP()+taille/2));
+		this.setProchaineCoord(new Coord(20,decor.getHauteurLP()+taille/2));
 	}
 }

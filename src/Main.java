@@ -18,11 +18,9 @@ public class Main {
 		
 		DecorDef decor = new DecorDef(f.getContentPane().getWidth(),f.getContentPane().getHeight(),80,125,100);
 		f.changerFond(decor);
+		decor.ajouterOiseau(new Oiseau(decor));
+		decor.ajouterOiseau(new Oiseau(decor));
 
-		
-		Oiseau o = new Oiseau(decor);
-		decor.ajouterOiseau(o);
-		
 		for(int i=0;i<10;i++){
 			Cible c = new Cible(decor);
 			decor.ajouterCible(c);

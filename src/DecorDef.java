@@ -1,9 +1,12 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -38,6 +41,7 @@ public class DecorDef extends JPanel {
 	
 	private double angle,vitesse;
 		
+	private Oiseau oiseauSurLP;
 
 	/**
 	 * Constructeur DecorDef
@@ -68,62 +72,55 @@ public class DecorDef extends JPanel {
 		plan = new Plan(new Coord(posDep,hauteur-hauteurSol)); 
 		this.setRequestFocusEnabled(true);
 		this.requestFocus();
+		repaint();
+		
 		this.addMouseMotionListener(new MouseMotionListener() {
 			
-			public void mouseMoved(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-			
-			}
+			public void mouseMoved(MouseEvent arg0) {}
 			
 			public void mouseDragged(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-
-				if(oiseaux.get(0)!=null){
-					
+				if(oiseauSurLP!=null && !oiseauSurLP.isFlying() && !oiseauSurLP.aFiniVol()){
 					Coord coord = plan.concret_Plan(new Coord(arg0.getX(),arg0.getY()));
-					
-//					System.out.println(coord.getX()+"   "+coord.getY());
 					int dist = new Coord(0,hauteurLP).distance(coord);
 					if(dist <120 ){
-						oiseaux.get(0).setCoord(coord);
+						oiseauSurLP.setCoord(coord);
 						repaint();
 						vitesse = dist+20;
 						angle=0;
 						double tan=0;
-						if(oiseaux.get(0).get_X() <0 && oiseaux.get(0).get_Y()<hauteurLP ){
-							double coteOppose = hauteurLP -oiseaux.get(0).get_Y();
-							double coteAdj = -oiseaux.get(0).get_X();
+						if(oiseauSurLP.get_X() <0 && oiseauSurLP.get_Y()<hauteurLP ){
+							double coteOppose = hauteurLP -oiseauSurLP.get_Y();
+							double coteAdj = -oiseauSurLP.get_X();
 							tan = coteOppose/coteAdj;
 							angle = Math.toDegrees(Math.atan(tan));
-							//System.out.println("premier cas "+angle );
+							System.out.println("cas 1");
+
 						}
-						if(oiseaux.get(0).get_X() <0 && oiseaux.get(0).get_Y()>hauteurLP ){
-							double coteOppose = oiseaux.get(0).get_Y()-hauteurLP;
-							double coteAdj = -oiseaux.get(0).get_X();
+						if(oiseauSurLP.get_X() <0 && oiseauSurLP.get_Y()>hauteurLP ){
+							double coteOppose =oiseauSurLP.get_Y()-hauteurLP;
+							double coteAdj = -oiseauSurLP.get_X();
 							tan = coteOppose/coteAdj;
 							angle = -Math.toDegrees(Math.atan(tan));
-							//System.out.println("2 cas "+angle );
+							System.out.println("cas 2");
 
 						}
-						if(oiseaux.get(0).get_X()>0 && oiseaux.get(0).get_Y()>hauteurLP ){
-							double coteOppose = oiseaux.get(0).get_Y()-hauteurLP;
-							double coteAdj = oiseaux.get(0).get_X();
+						if(oiseauSurLP.get_X()>0 &&oiseauSurLP.get_Y()>hauteurLP ){
+							double coteOppose = oiseauSurLP.get_Y()-hauteurLP;
+							double coteAdj = oiseauSurLP.get_X();
 							tan = coteOppose/coteAdj;
 							angle = Math.toDegrees(Math.atan(tan))+180;
-							//System.out.println("3 cas angle = "+angle);
-
+							System.out.println("cas 3");
 						}
-						if(oiseaux.get(0).get_X()>0 && oiseaux.get(0).get_Y()<hauteurLP ){
-							double coteOppose = hauteurLP-oiseaux.get(0).get_Y();
-							double coteAdj = oiseaux.get(0).get_X();
+						if(oiseauSurLP.get_X()>0 && oiseauSurLP.get_Y()<hauteurLP ){
+							double coteOppose = oiseauSurLP.get_X();
+							double coteAdj = hauteurLP-oiseauSurLP.get_Y();
 							tan = coteOppose/coteAdj;
 							angle = 90+Math.toDegrees(Math.atan(tan));
-							//System.out.println("4 cas angle = "+angle);
-
+							System.out.println("cas 4");
 						}
-						Coord coord2 = Animation.coordParabole(0, vitesse, angle, oiseaux.get(0).get_X(), oiseaux.get(0).get_Y());
-						System.out.println(oiseaux.get(0).get_X()+","+oiseaux.get(0).get_X()+" bec : "+coord2.getX()+","+coord2.getY());
-						oiseaux.get(0).setProchaineCoord(coord2);
+						Coord coord2 = LancePierre.prochCoordDroite(25, oiseauSurLP.getCoord(),new Coord(0,hauteurLP+oiseauSurLP.getTaille()/2));
+						oiseauSurLP.setProchaineCoord(coord2);
+						System.out.println("angle "+angle);
 					}
 				}
 			}
@@ -131,39 +128,34 @@ public class DecorDef extends JPanel {
 		this.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				lancePierre();
-				//lancerAnim();
-
+				if(oiseauSurLP!=null && !oiseauSurLP.isFlying() && !oiseauSurLP.aFiniVol())
+					lancePierre();
 			}
 			
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void mousePressed(MouseEvent arg0) {}
 			
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void mouseExited(MouseEvent arg0) {}
 			
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void mouseEntered(MouseEvent arg0) {}
 			
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void mouseClicked(MouseEvent arg0) {}
 		});
 	}
 	
-	public void lancerAnim(){
-		new Animation(this,vitesse,angle);
+	public Oiseau oiseauSurLP(){
+		for(Oiseau o: oiseaux){
+			if(!o.aFiniVol()){
+				oiseauSurLP = o;
+				o.placerSurLP();
+				return o;
+			}
+		}
+		return null;
 	}
+	
 	public void lancePierre(){
-		//new Animation(this,vitesse,angle);
+		new LancePierre(oiseauSurLP,this,vitesse,angle);
+		oiseauSurLP.fly();
 	}
 	
 	
@@ -206,12 +198,30 @@ public class DecorDef extends JPanel {
 			else g.fillRect(coordPos.getX()-c.getTaille()/2,coordPos.getY()-c.getTaille()/2, c.getTaille(), c.getTaille());
 		}
 		
+		if(oiseauSurLP!=null ){
+			int dist = new Coord(0,hauteurLP).distance(oiseauSurLP.getCoord());
+			if(dist<120){
+				Graphics2D g2 = (Graphics2D)(g);
+				g2.setStroke(new BasicStroke(8));
+				g2.setColor(new Color(238,201,0));
+				Coord co = plan.plan_Concret(oiseauSurLP.getCoord());
+				Coord cl = plan.plan_Concret(new Coord(0,hauteurLP));
+				g2.draw(new Line2D.Float(co.getX(), co.getY(), cl.getX(), cl.getY()));
+			}
+			else if(dist>200) {
+				Graphics2D g2 = (Graphics2D)(g);
+				g2.setStroke(new BasicStroke(8));
+				g2.setColor(new Color(238,201,0));
+				Coord cl = plan.plan_Concret(new Coord(0,hauteurLP));
+				g2.draw(new Line2D.Float(cl.getX()-10, cl.getY()+20, cl.getX(), cl.getY()));
+			}
+		}
 		//placements pointilles trajectoire
-		/*for(Coord point : pointsTraj){
+		for(Coord point : pointsTraj){
 			g.setColor(Color.black);
 			Coord coordPos = plan.plan_Concret(point);
 			g.fillOval(coordPos.getX()-1,coordPos.getY()-1,2,2);
-		}*/
+		}
 		
 		revalidate();
 	}
@@ -309,6 +319,10 @@ public class DecorDef extends JPanel {
 	public void ajouterOiseau(Oiseau o) {
 		// TODO Auto-generated method stub
 		oiseaux.add(o);
+		if(oiseauSurLP==null){
+			oiseauSurLP=o;
+			o.placerSurLP();
+		}
 	}
 	
 	/**
