@@ -128,8 +128,14 @@ public class DecorDef extends JPanel {
 		this.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent arg0) {
-				if(oiseauSurLP!=null && !oiseauSurLP.isFlying() && !oiseauSurLP.aFiniVol())
-					lancePierre();
+				if(drag){
+				//if ((new Coord(arg0.getX(), arg0.getY()).distance(oiseauSurLP.getCoord())<=oiseauSurLP.getTaille()) ) {
+					if(oiseauSurLP!=null && !oiseauSurLP.isFlying() && !oiseauSurLP.aFiniVol()) {
+						lancePierre();
+						
+					}
+					drag=false;
+				}
 			}
 			
 			public void mousePressed(MouseEvent arg0) {}
