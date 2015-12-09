@@ -36,7 +36,8 @@ public class DecorDef extends JPanel {
 	private final int posDep;
 	// hauteur du lancepierre en px
 	private final int hauteurLP;
-	
+	//booleen drag (sera utile pour la suite avec les animations)
+	private boolean drag =false;
 	
 	
 	private double angle,vitesse;
@@ -58,7 +59,6 @@ public class DecorDef extends JPanel {
 		oiseaux = new ArrayList<Oiseau>();
 		pointsTraj = new ArrayList<Coord>();
 
-		
 		largeur = l;
 		
 		hauteur = h;
@@ -78,6 +78,8 @@ public class DecorDef extends JPanel {
 			
 			public void mouseMoved(MouseEvent arg0) {}
 			
+			
+			//Drag and drop
 			public void mouseDragged(MouseEvent arg0) {
 				if(oiseauSurLP!=null && !oiseauSurLP.isFlying() && !oiseauSurLP.aFiniVol()){
 					Coord coord = plan.concret_Plan(new Coord(arg0.getX(),arg0.getY()));
@@ -121,30 +123,34 @@ public class DecorDef extends JPanel {
 						Coord coord2 = LancePierre.prochCoordDroite(25, oiseauSurLP.getCoord(),new Coord(0,hauteurLP+oiseauSurLP.getTaille()/2));
 						oiseauSurLP.setProchaineCoord(coord2);
 						System.out.println("angle "+angle);
+						drag=true;
 					}
 				}
 			}
 		});
 		this.addMouseListener(new MouseListener() {
 			
-			public void mouseReleased(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent bite) {
+				//recuperation drag
 				if(drag){
-				//if ((new Coord(arg0.getX(), arg0.getY()).distance(oiseauSurLP.getCoord())<=oiseauSurLP.getTaille()) ) {
+				//if ((new Coord(bite.getX(), bite.getY()).distance(oiseauSurLP.getCoord())<=oiseauSurLP.getTaille()) ) {
 					if(oiseauSurLP!=null && !oiseauSurLP.isFlying() && !oiseauSurLP.aFiniVol()) {
 						lancePierre();
 						
 					}
 					drag=false;
 				}
+				
 			}
-			
 			public void mousePressed(MouseEvent arg0) {}
 			
 			public void mouseExited(MouseEvent arg0) {}
 			
 			public void mouseEntered(MouseEvent arg0) {}
-			
+
 			public void mouseClicked(MouseEvent arg0) {}
+			
+			
 		});
 	}
 	
@@ -222,6 +228,7 @@ public class DecorDef extends JPanel {
 				g2.draw(new Line2D.Float(cl.getX()-10, cl.getY()+20, cl.getX(), cl.getY()));
 			}
 		}
+		
 		//placements pointilles trajectoire
 		for(Coord point : pointsTraj){
 			g.setColor(Color.black);
