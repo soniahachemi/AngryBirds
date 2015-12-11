@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -10,6 +11,7 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -38,6 +40,7 @@ public class DecorDef extends JPanel {
 	private final int hauteurLP;
 	//booleen drag (sera utile pour la suite avec les animations)
 	private boolean drag =false;
+	private Image img;
 	
 	
 	private double angle,vitesse;
@@ -183,17 +186,22 @@ public class DecorDef extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		
-		g.setColor(new Color(91,158,238));
+		/*g.setColor(new Color(91,158,238));
 		g.fillRect(0, 0, largeur, hauteur);
 		g.setColor(new Color(103,198,55));
 		g.fillRect(0, hauteur-hauteurSol, largeur, hauteurSol);
 		g.setColor(new Color(138,104,44));
 		g.fillRect(posDep-10, hauteur-hauteurSol-hauteurLP,20, hauteurLP);
-		g.setColor(Color.black);
-
+		g.setColor(Color.black);*/
+		ImageIcon i = new ImageIcon(getClass().getResource("/res/fd.jpg"));
+		img = i.getImage();
+		g.drawImage(img, 0, 0, null);
+		
+		
+		
 		//placement oiseau
 		for(Oiseau o : oiseaux){
-			g.setColor(Color.yellow);
+			g.setColor(Color.DARK_GRAY);
 			Coord coordPos = plan.plan_Concret(o.getCoord());
 			g.fillOval(coordPos.getX()-o.getTaille()/2,coordPos.getY()-o.getTaille()/2, o.getTaille(), o.getTaille());
 			Coord coordPos2 = plan.plan_Concret(o.getProchaineCoord());
@@ -354,3 +362,4 @@ public class DecorDef extends JPanel {
 		pointsTraj = new ArrayList<Coord>();
 	}
 }
+
