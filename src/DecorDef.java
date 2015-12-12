@@ -8,9 +8,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -193,10 +197,22 @@ public class DecorDef extends JPanel {
 		g.setColor(new Color(138,104,44));
 		g.fillRect(posDep-10, hauteur-hauteurSol-hauteurLP,20, hauteurLP);
 		g.setColor(Color.black);*/
-		ImageIcon i = new ImageIcon(getClass().getResource("/res/fd.jpg"));
+		
+		/*ImageIcon i = new ImageIcon(getClass().getResource("img/fd.jpg"));
 		img = i.getImage();
 		g.drawImage(img, 0, 0, null);
 		
+		*/
+	//	private BufferedImage buf = ImageIO.read(img);
+		
+		
+		
+		try { 
+			BufferedImage image = ImageIO.read(new File("img/fd.jpg"));
+			g.drawImage(image, 0, 0, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		
 		//placement oiseau
