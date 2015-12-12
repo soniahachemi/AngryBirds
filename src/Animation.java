@@ -37,6 +37,7 @@ public class Animation {
 	 */
 	public void trajectoireParabole(final Oiseau o){
 		t=0;
+		if(angle<91 && angle>89) angle = (new Random().nextBoolean())? 91 : 89;
 		final Timer timer = new Timer(); 
 		TimerTask timerTask = new TimerTask(){	
 			public void run()  { 
@@ -49,6 +50,10 @@ public class Animation {
 					o.setProchaineCoord(coordParabole(t2,vitesse,angle,0,d.getHauteurLP()));
 				}
 				for(Cible c : d.getCibles()){
+					/*if(c.coordBase.getX() <(c.get_X()+5)){
+						c.set_X(c.get_X()-1);
+					}*/
+					c.set_X((int)(c.coordBase.getX()+Math.sin(t)));
 					if(c.getCoord().distance(o.getCoord()) < (c.getTaille()/2 + o.getTaille()/2))
 							c.toucher();
 				}
@@ -68,7 +73,6 @@ public class Animation {
 	
 	// Renvoi les coordonnes en fonction du temps la vitesse et l'angle
 	static Coord coordParabole(double t,double vitesse,double anglen,int posDepX,int posDepY){
-		if(anglen<91 && anglen>89) anglen = (new Random().nextBoolean())? 91 : 89;
 		double rad = Math.toRadians(anglen);
 		double x = vitesse*Math.cos(rad)*t +posDepX;
 		
