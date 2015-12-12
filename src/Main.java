@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		f = new Fenetre(1024,576);
 		f.setTitle("Projet tuteuré - Angry Birds - Groupe L5");
-		DecorDef decor = new DecorDef(f.getContentPane().getWidth(),f.getContentPane().getHeight(),80,125,100);
+		DecorDef decor = new DecorDef(f.getContentPane().getWidth(),f.getContentPane().getHeight(),40,125,100);
 		f.changerFond(decor);
 		decor.ajouterOiseau(new Oiseau(decor));
 		decor.ajouterOiseau(new Oiseau(decor));
