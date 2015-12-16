@@ -6,9 +6,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
+
+	/**
+	 * Classe Credits
+	 * presente les membres du groupe, copyright etc
+	 */
 public class Credits extends JFrame{
 
-	
+	/**
+	 * Constructeur
+	 * @param l
+	 * @param h
+	 * Defini toute l interface presente dans la fenetre des credits
+	 */
 	private static final long serialVersionUID = 1L;
 	protected JLabel titre;
 	
