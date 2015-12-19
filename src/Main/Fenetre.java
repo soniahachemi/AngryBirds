@@ -1,10 +1,12 @@
+package Main;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
  * Classe Fenetre
  * Herite de JFrame
- * @author Quentin  Spinnewyn
+ * @author Groupe L5
  *
  */
 public class Fenetre extends JFrame {

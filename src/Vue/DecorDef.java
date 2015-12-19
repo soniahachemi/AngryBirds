@@ -1,30 +1,32 @@
+package Vue;
+
+
+
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JPanel;
+
+import Controlleur.Coord;
+import Controlleur.LancePierre;
+import Modele.Cible;
+import Modele.Oiseau;
 
 /**
  * Classe DecorDef Herite de Decor
  * 
- * @author Quentin Spinnewyn
+ * @author Groupe L5
  *
  */
-public class DecorDef extends JPanel {
+public class DecorDef extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	private final Plan plan;
@@ -44,7 +46,6 @@ public class DecorDef extends JPanel {
 	private final int hauteurLP;
 	// booleen drag (sera utile pour la suite avec les animations)
 	private boolean drag = false;
-	private Image img;
 
 	private double angle, vitesse;
 
@@ -196,15 +197,12 @@ public class DecorDef extends JPanel {
 	 */
 	public void paintComponent(Graphics g) {
 
-		try {
-			BufferedImage image = ImageIO.read(new File("img/fd.jpg"));
-			g.drawImage(image, 0, 0, null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		g.fillRect(posDep - 10, hauteur - hauteurSol - hauteurLP-10, 20, hauteurLP);
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(91,158,238));
+		g.fillRect(0, 0, largeur, hauteur);
+		g.setColor(new Color(103,198,55));
+		g.fillRect(0, hauteur-hauteurSol, largeur, hauteurSol);
+		g.setColor(new Color(138,104,44));
+		g.fillRect(posDep-10, hauteur-hauteurSol-hauteurLP,20, hauteurLP);
 
 		// placement oiseau
 		for (Oiseau o : oiseaux) {
@@ -223,7 +221,7 @@ public class DecorDef extends JPanel {
 			else
 				g.setColor(Color.blue);
 			Coord coordPos = plan.plan_Concret(c.getCoord());
-			if (new Random().nextBoolean())
+			if (c.isRond())
 				g.fillOval(coordPos.getX() - c.getTaille() / 2, coordPos.getY() - c.getTaille() / 2, c.getTaille(),
 						c.getTaille());
 			else
@@ -341,6 +339,7 @@ public class DecorDef extends JPanel {
 	 */
 	public void ajouterCible(Cible c) {
 		// TODO Auto-generated method stub
+		c.addObserver(this);
 		cibles.add(c);
 	}
 
@@ -350,6 +349,7 @@ public class DecorDef extends JPanel {
 	public void ajouterOiseau(Oiseau o) {
 		// TODO Auto-generated method stub
 		oiseaux.add(o);
+		o.addObserver(this);
 		if (oiseauSurLP == null) {
 			oiseauSurLP = o;
 			o.placerSurLP();
@@ -371,4 +371,10 @@ public class DecorDef extends JPanel {
 		// TODO Auto-generated method stub
 		pointsTraj = new ArrayList<Coord>();
 	}
+
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		repaint();
+	}
+
 }

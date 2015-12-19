@@ -1,12 +1,15 @@
+package Controlleur;
 
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import Modele.Oiseau;
+import Vue.DecorDef;
 
 
 /**
  * Classe Animation, g�rant les diff�rentes trajectoires de l'oiseau
- * @author Quentin  Spinnewyn
+ * @author Groupe L5
  *
  */
 public class LancePierre {
@@ -56,7 +59,7 @@ public class LancePierre {
 		}
 	
 
-	static Coord prochCoordDroite(int t,Coord dep, Coord arr){
+	public static Coord prochCoordDroite(int t,Coord dep, Coord arr){
 		Coord p = arr;
 		
 		while(p.distance(dep)>t){

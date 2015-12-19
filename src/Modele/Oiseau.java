@@ -1,9 +1,16 @@
+package Modele;
+
+import java.util.Observable;
+
+import Controlleur.Coord;
+import Vue.DecorDef;
+
 /**
  * Classe Oiseau
- * @author Quentin  Spinnewyn
+ * @author Groupe L5
  *
  */
-public class Oiseau {
+public class Oiseau extends Observable {
 
 	// coord par rapport au plan
 	private Coord coord,prochaineCoord;
@@ -30,6 +37,8 @@ public class Oiseau {
 	 */
 	public void set_X(int i) {
 		coord.setX(i);
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -46,6 +55,8 @@ public class Oiseau {
 	 */
 	public void set_Y(int i) {
 		coord.setY(i);
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -70,6 +81,8 @@ public class Oiseau {
 	 */
 	public void setCoord(Coord c) {
 		this.coord = c;
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -86,6 +99,8 @@ public class Oiseau {
 	 */
 	public void setProchaineCoord(Coord c){
 		prochaineCoord = c;
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -109,6 +124,8 @@ public class Oiseau {
 	 */
 	public void fly(){
 		isFlying=true;
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -117,6 +134,7 @@ public class Oiseau {
 	 */
 	public boolean aFiniVol(){
 		return aFiniVol;
+		
 	}
 	
 	/**
@@ -125,11 +143,15 @@ public class Oiseau {
 	public void finirVol(){
 		aFiniVol=true;
 		isFlying=false;
+		setChanged();
+		notifyObservers();
 	}
 
 	public void placerSurLP() {
 		// TODO Auto-generated method stub
 		this.setCoord(new Coord(0,decor.getHauteurLP()+taille/2));
 		this.setProchaineCoord(new Coord(20,decor.getHauteurLP()+taille/2));
+		setChanged();
+		notifyObservers();
 	}
 }

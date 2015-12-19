@@ -1,12 +1,17 @@
+package Controlleur;
+
+
+
 /**
  * Classe coord aidant l'oiseau, et les cibles
- * @author Quentin  Spinnewyn
+ * @author Groupe L5
  *
  */
 public class Coord {
 	
 	private int x,y;
 	
+
 	/**
 	 * Constructeur
 	 * @param x1
@@ -69,6 +74,19 @@ public class Coord {
 		int distanceY = c.getY() - y;
 		if(distanceY <0) distanceY*=-1;
 		return (int)Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+	}
+
+	public Coord somme(Coord vect) {
+		// TODO Auto-generated method stub
+		return new Coord(x+vect.getX(),y+vect.getY());
+	}
+	public Coord inverse(){
+		return new Coord(x*-1,y*-1);
+	}
+
+	public Coord diff(Coord vect) {
+		// TODO Auto-generated method stub
+		return new Coord(x-vect.getX(),y-vect.getY());
 	}
 
 }

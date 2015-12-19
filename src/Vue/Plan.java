@@ -1,3 +1,7 @@
+package Vue;
+
+import Controlleur.Coord;
+
 /**
  * Un plan est un objet représentant un Plan, tel qu'on a l'habitude d'en rencontrer.
  * Les coordonnees du point d'origine sont (0,0) dans le plan
@@ -6,7 +10,7 @@
  * se trouve aux coordonnées(50,400) , en bas à gauche donc.
  * Les x augmentent de gauche à droite et les y de bas en haut.
  * Chaque coordonnées "concrètes" du JPanel possède donc un equivalent dans le plan 
- *
+ * @author Groupe L5
  */
 public class Plan {
 

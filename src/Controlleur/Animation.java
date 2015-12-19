@@ -1,12 +1,17 @@
+package Controlleur;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Modele.Cible;
+import Modele.Oiseau;
+import Vue.DecorDef;
+
 
 /**
  * Classe Animation, g�rant les diff�rentes trajectoires de l'oiseau
- * @author Quentin  Spinnewyn
+ * @author Groupe L5
  *
  */
 public class Animation {
