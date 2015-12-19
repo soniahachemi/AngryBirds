@@ -23,9 +23,7 @@ public class TestProjet {
 		 */
 		@Test
 		public final void testPlan_Concret() {
-			Coord c;
 			Plan p = new Plan(new Coord(100, 100));
-			//Plan p = new Plan(new Coord(100, 100));
 			assertTrue(p.plan_Concret(new Coord(100, 100)).equals(
 					new Coord(200, 0)));
 			assertTrue(p.plan_Concret(new Coord(-20, -20)).equals(

@@ -1,10 +1,7 @@
 package Main;
 
-import Controlleur.ControlleurCible;
+
 import Graphique.Menu;
-import Modele.Cible;
-import Modele.Oiseau;
-import Vue.DecorDef;
 
 /**
  * Classe principale : MAIN
