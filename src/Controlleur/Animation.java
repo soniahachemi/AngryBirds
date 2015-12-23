@@ -58,6 +58,7 @@ public class Animation {
 				for(Cible c : d.getCibles()){
 					if(c.getCoord().distance(o.getCoord()) <= (c.getTaille()/2 + o.getTaille()/2)){
 						c.toucher();
+						new ControlleurCible(d);
 					}
 				}
 				d.repaint();

@@ -46,12 +46,13 @@ public class ControlleurCible {
 				else{ 
 					for(Cible c : d.getCibles()){
 						c.setAngle(c.getAngle()+1);
+						c.set_X(c.get_X()+1);
 					}
 					d.repaint();
 				}
 			}
 		};
-		timer.scheduleAtFixedRate(timerTask,0,10);
+		timer.scheduleAtFixedRate(timerTask,0,30);
 	}
 	
 	public void rejouer(DecorDef d){

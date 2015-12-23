@@ -77,7 +77,6 @@ public class Menu extends JPanel{
 				Builder b = new Builder(decor);
 				b.tour();
 				Main.getFenetre().changerFond(decor);
-				new ControlleurCible(decor);
 			}
 		});
 		add(jouer);
