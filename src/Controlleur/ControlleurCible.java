@@ -47,7 +47,7 @@ public class ControlleurCible {
 					timer.cancel();
 				}
 				else{ 
-						c.setAngle(c.getAngle()+0.5);
+						c.setAngle(c.getAngle()+1);
 						c.set_X(c.get_X()+1);
 					d.repaint();
 				}
