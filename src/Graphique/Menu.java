@@ -35,14 +35,12 @@ public class Menu extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	protected Image img;
-	protected JLabel titre, soustitre, image;
+	protected JLabel titre, soustitre, image, copyr;
 	protected JButton jouer, regles, credits, options;
 	
 	
 	/**
 	 * Constructeur
-	 * @param l
-	 * @param h
 	 * Defini toute l interface presente dans la fenetre menu
 	 */
 	public Menu(){
@@ -54,22 +52,23 @@ public class Menu extends JPanel{
 		//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		titre = new JLabel("Bienvenue sur Angry Birds !");
-		titre.setBounds(50,25,500,30);
-		titre.setFont(new Font("", Font.BOLD, 22));
-		titre.setForeground(Color.BLUE);
+		titre.setBounds(50,25,500,35);
+		titre.setFont(new Font("", Font.BOLD, 32));
+		titre.setForeground(Color.GREEN);
 		add(titre);
 		
 		soustitre = new JLabel("Groupe L5");
-		soustitre.setBounds(800,25,500,30);
+		soustitre.setBounds(750,30,500,30);
 		soustitre.setFont(new Font("", Font.ITALIC, 20));
 		soustitre.setForeground(Color.DARK_GRAY);
 		add(soustitre);
 		
 		jouer = new JButton("Jouer");
-		jouer.setBounds(110,180,200,60);
-		jouer.setFont(new Font("", Font.CENTER_BASELINE, 15));
+		jouer.setBounds(110,160,200,60);
+		jouer.setFont(new Font("", Font.CENTER_BASELINE, 20));
 		jouer.setForeground(Color.RED);
-		
+		jouer.setFocusPainted(false);
+		jouer.setContentAreaFilled(false);
 		jouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 				DecorDef decor = new DecorDef(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
@@ -83,31 +82,48 @@ public class Menu extends JPanel{
 		});
 		add(jouer);
 		
-		regles = new JButton("Règles du jeu");
-		regles.setBounds(110,250,200,60);
-		regles.setFont(new Font("", Font.CENTER_BASELINE, 15));
+		regles = new JButton("Regles du jeu");
+		regles.setBounds(110,230,200,60);
+		regles.setFont(new Font("", Font.CENTER_BASELINE, 20));
 		regles.setForeground(Color.RED);
+		regles.setFocusPainted(false);
+		regles.setContentAreaFilled(false);
+		regles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+			    Main.getFenetre().changerFond(new Regles());
+			    
+			}
+		});
 		add(regles);
 		
-		credits = new JButton("Crédits");
-		credits.setBounds(110,320,200,60);
-		credits.setFont(new Font("",Font.CENTER_BASELINE, 15));
+		credits = new JButton("Credits");
+		credits.setBounds(700,160,200,60);
+		credits.setFont(new Font("",Font.CENTER_BASELINE, 20));
 		credits.setForeground(Color.RED);
-		
+		credits.setFocusPainted(false);
+		credits.setContentAreaFilled(false);
 		credits.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 			    Main.getFenetre().changerFond(new Credits());
+			    
 			}
 		});
-		 
 		add(credits);
 		
 		options = new JButton("Options");
-		options.setBounds(110,390,200,60);
-		options.setFont(new Font("",Font.CENTER_BASELINE, 15));
+		options.setBounds(700,230,200,60);
+		options.setFont(new Font("",Font.CENTER_BASELINE, 20));
 		options.setForeground(Color.RED);
+		options.setFocusPainted(false);
+		options.setContentAreaFilled(false);
 		add(options);
 			
+		
+		copyr = new JLabel("Copyright Groupe L5 - Tous droits reserves");
+		copyr.setBounds(700, 520, 290, 20);
+		copyr.setFont(new Font("",Font.ITALIC, 12));
+		copyr.setForeground(Color.WHITE);
+		add(copyr);
 	}
 	
 
@@ -118,10 +134,5 @@ public class Menu extends JPanel{
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this); // Pour que la position et les dimensions de l'image concordent avec celles du fond
 		} catch (IOException e){}
 	}
-	
-	
-
-	
-	
 	
 }
