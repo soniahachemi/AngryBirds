@@ -10,9 +10,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Controlleur.Coord;
@@ -215,19 +220,10 @@ public class DecorDef extends JPanel implements Observer {
 		}
 
 		// placement cibles
-		for (Cible c : cibles) {
-			if (c.estTouche())
-				g.setColor(Color.red);
-			else
-				g.setColor(Color.blue);
-			Coord coordPos = plan.plan_Concret(c.getCoord());
-			if (c.isRond())
-				g.fillOval(coordPos.getX() - c.getTaille() / 2, coordPos.getY() - c.getTaille() / 2, c.getTaille(),
-						c.getTaille());
-			else
-				g.fillRect(coordPos.getX() - c.getTaille() / 2, coordPos.getY() - c.getTaille() / 2, c.getTaille(),
-						c.getTaille());
-		}
+			for(Cible c : cibles){
+				c.dessin(g);
+			
+			}			
 
 		if (oiseauSurLP != null) {
 			int dist = new Coord(0, hauteurLP).distance(oiseauSurLP.getCoord());
@@ -247,12 +243,6 @@ public class DecorDef extends JPanel implements Observer {
 			}
 		}
 
-		// placements pointilles trajectoire
-		for (Coord point : pointsTraj) {
-			g.setColor(Color.black);
-			Coord coordPos = plan.plan_Concret(point);
-			g.fillOval(coordPos.getX() - 1, coordPos.getY() - 1, 2, 2);
-		}
 
 		revalidate();
 	}
@@ -376,5 +366,4 @@ public class DecorDef extends JPanel implements Observer {
 		// TODO Auto-generated method stub
 		repaint();
 	}
-
 }

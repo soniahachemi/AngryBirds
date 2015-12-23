@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Builder.Builder;
 import Controlleur.ControlleurCible;
 import Main.Main;
 import Modele.Cible;
@@ -75,12 +76,10 @@ public class Menu extends JPanel{
 				DecorDef decor = new DecorDef(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
 				decor.ajouterOiseau(new Oiseau(decor));
 				decor.ajouterOiseau(new Oiseau(decor));
-				for(int i=0;i<10;i++){
-					Cible c = new Cible(decor);
-					decor.ajouterCible(c);
-				}
-				new ControlleurCible(decor);
+				Builder b = new Builder(decor);
+				b.tour();
 				Main.getFenetre().changerFond(decor);
+				new ControlleurCible(decor);
 			}
 		});
 		add(jouer);

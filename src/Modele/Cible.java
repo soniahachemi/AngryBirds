@@ -3,8 +3,17 @@ package Modele;
 
 
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import Controlleur.Coord;
 import Vue.DecorDef;
@@ -21,7 +30,17 @@ public class Cible extends Observable{
 	private int taille;
 	private Coord vect;
 	private boolean rond;
+	private double angle;
+	private DecorDef decor;
 	
+	public double getAngle() {
+		return angle;
+	}
+
+	public void setAngle(double angle) {
+		this.angle = angle;
+	}
+
 	public boolean isRond() {
 		return rond;
 	}
@@ -43,8 +62,9 @@ public class Cible extends Observable{
 	 * @param d : decor
 	 */
 	public Cible(DecorDef d){
+		decor = d;
 		touche = false;
-		taille = 25;
+		taille = 50;
 		
 		//calcule les coords des cibles en random sur la carte
 		int x = d.getposDep()+ new Random().nextInt(d.getLargeur()-d.getposDep());
@@ -135,5 +155,24 @@ public class Cible extends Observable{
 		coord=c;
 		setChanged();
 		notifyObservers();
+	}
+	public void dessin(Graphics g) {
+		
+		
+		try {
+			BufferedImage img = ImageIO.read(new File("img/box.png"));
+			AffineTransform tx = new AffineTransform();
+		    tx.rotate(Math.toRadians(angle),getTaille() / 2 ,getTaille() / 2);
+			//tx.rotate(Math.toRadians(angle), get_X(), get_Y());
+
+		    AffineTransformOp op = new AffineTransformOp(tx,
+		        AffineTransformOp.TYPE_BILINEAR);
+		    img = op.filter(img, null);
+		    
+		    Coord coord = decor.getPlan().plan_Concret(new Coord(get_X(),get_Y()));
+		    g.drawImage(img, coord.getX()-getTaille()/2 , coord.getY()-getTaille()/2, null);
+		   // System.out.println(get_X()+","+get_Y());
+			
+			} catch (IOException e){}
 	}
 }

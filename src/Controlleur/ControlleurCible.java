@@ -44,9 +44,7 @@ public class ControlleurCible {
 				}
 				else{ 
 					for(Cible c : d.getCibles()){
-						Coord s = c.getCoord().somme(c.getVect());
-						if(b) s = c.getCoord().diff(c.getVect());
-						c.setCoord(s);
+						c.setAngle(c.getAngle()+1);
 					}
 					d.repaint();
 				}

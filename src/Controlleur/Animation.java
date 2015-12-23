@@ -55,8 +55,9 @@ public class Animation {
 					o.setProchaineCoord(coordParabole(t2,vitesse,angle,0,d.getHauteurLP()));
 				}
 				for(Cible c : d.getCibles()){
-					if(c.getCoord().distance(o.getCoord()) < (c.getTaille()/2 + o.getTaille()/2))
-							c.toucher();
+					if(c.getCoord().distance(o.getCoord()) <= (c.getTaille()/2 + o.getTaille()/2)){
+						c.toucher();
+					}
 				}
 				d.repaint();
 				if(o.get_Y()<=0+o.getTaille()/2 || t>=8000){
