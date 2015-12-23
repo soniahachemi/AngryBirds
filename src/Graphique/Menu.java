@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import Builder.Builder;
 import Controlleur.ControlleurCible;
 import Main.Main;
-import Modele.Cible;
 import Modele.Oiseau;
 import Vue.DecorDef;
 
@@ -112,6 +111,7 @@ public class Menu extends JPanel{
 	}
 	
 
+	@Override
 	public void paintComponent(Graphics g){
 		try {
 			BufferedImage img = ImageIO.read(new File("img/fd.jpg"));	// (A)

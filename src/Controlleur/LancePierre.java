@@ -42,6 +42,7 @@ public class LancePierre {
 		t=0;
 		final Timer timer = new Timer(); 
 		TimerTask timerTask = new TimerTask(){	
+			@Override
 			public void run()  { 
 				t+=1;
 				if(o.getCoord().distance(new Coord(0,d.getHauteurLP()+o.getTaille()/2)) >0){

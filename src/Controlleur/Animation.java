@@ -45,6 +45,7 @@ public class Animation {
 		if(angle<91 && angle>89) angle = (new Random().nextBoolean())? 91 : 89;
 		final Timer timer = new Timer(); 
 		TimerTask timerTask = new TimerTask(){	
+			@Override
 			public void run()  { 
 				t+=0.015;
 				o.setCoord(coordParabole(t,vitesse,angle,0,d.getHauteurLP()));

@@ -10,14 +10,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Controlleur.Coord;
@@ -200,6 +196,7 @@ public class DecorDef extends JPanel implements Observer {
 	/**
 	 * Methode paintComponent
 	 */
+	@Override
 	public void paintComponent(Graphics g) {
 
 		g.setColor(new Color(91,158,238));

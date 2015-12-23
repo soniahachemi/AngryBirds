@@ -36,6 +36,7 @@ public class ControlleurCible {
 	public void trajectoireCible(final DecorDef d,final boolean b){
 		final Timer timer = new Timer(); 
 		TimerTask timerTask = new TimerTask(){	
+			@Override
 			public void run()  { 
 				t+=0.1;
 				if(t>10){
