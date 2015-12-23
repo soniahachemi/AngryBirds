@@ -21,9 +21,13 @@ public class ControlleurCible {
 	
 	double t = 0;
 	boolean b = false;
+	Cible cible;
 	
-	public ControlleurCible(DecorDef d1){
-		trajectoireCible(d1,b);
+	
+	public ControlleurCible(DecorDef d1,Cible c){
+		cible =c;
+		trajectoireCible(c,d1,b);
+		
 	}
 	
 	
@@ -33,31 +37,22 @@ public class ControlleurCible {
 	 * Utilisation d'un timer
 	 * @param o
 	 */
-	public void trajectoireCible(final DecorDef d,final boolean b){
+	public void trajectoireCible(final Cible c,final DecorDef d,final boolean b){
 		final Timer timer = new Timer(); 
 		TimerTask timerTask = new TimerTask(){	
 			@Override
 			public void run()  { 
-				t+=0.1;
+				t+=1;
 				if(t>10){
 					timer.cancel();
-					rejouer(d);
 				}
 				else{ 
-					for(Cible c : d.getCibles()){
-						c.setAngle(c.getAngle()+1);
+						c.setAngle(c.getAngle()+0.5);
 						c.set_X(c.get_X()+1);
-					}
 					d.repaint();
 				}
 			}
 		};
-		timer.scheduleAtFixedRate(timerTask,0,30);
-	}
-	
-	public void rejouer(DecorDef d){
-		t=0;
-		b=!b;
-		trajectoireCible(d,b);
+		timer.scheduleAtFixedRate(timerTask,0,50);
 	}
 }
