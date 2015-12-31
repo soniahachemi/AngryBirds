@@ -7,12 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Builder.Builder;
 import Controlleur.Coord;
 import Controlleur.Gravite;
 import Main.Main;
@@ -28,6 +25,10 @@ import Vue.Decor;
  */
 public class Creation extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Decor decor;
 	
 	

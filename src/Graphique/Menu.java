@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Builder.Builder;
-import Controlleur.ControlleurCible;
 import Controlleur.Gravite;
 import Main.Main;
 import Modele.Oiseau;
