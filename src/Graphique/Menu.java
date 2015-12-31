@@ -1,5 +1,6 @@
 package Graphique;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -125,6 +126,23 @@ public class Menu extends JPanel{
 		copyr.setFont(new Font("",Font.ITALIC, 12));
 		copyr.setForeground(Color.WHITE);
 		add(copyr);
+		
+		
+		JButton creation = new JButton("Mode création");
+		creation.setBounds(400,360,200,60);
+		creation.setFont(new Font("", Font.CENTER_BASELINE, 20));
+		creation.setForeground(new Color(175,168,106));
+		creation.setFocusPainted(false);
+		creation.setContentAreaFilled(false);
+		creation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				Main.getFenetre().changerFond(new Creation());
+			}
+		});
+		add(creation);
+		
+		
+		
 	}
 	
 

@@ -167,7 +167,7 @@ public class Cible extends Observable{
 		        AffineTransformOp.TYPE_BILINEAR);
 		    img = op.filter(img, null);
 		    
-		    Coord coord = decor.getPlan().plan_Concret(new Coord(get_X(),get_Y()));
+		    Coord coord = decor.getPlan().plan_Concret(this.coord);
 		    g.drawImage(img, coord.getX()-getTaille()/2 , coord.getY()-getTaille()/2, null);
 		   // System.out.println(get_X()+","+get_Y());
 			

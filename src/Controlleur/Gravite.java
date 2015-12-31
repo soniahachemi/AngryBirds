@@ -3,6 +3,8 @@ package Controlleur;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JPanel;
+
 import Modele.Cible;
 import Modele.Oiseau;
 import Vue.Decor;
@@ -10,9 +12,15 @@ import Vue.Decor;
 public class Gravite {
 
 	Decor decor;
+	JPanel creation;
 	
 	public Gravite(Decor d){
 		decor = d;
+		gravite();
+	}
+	public Gravite(Decor d,JPanel j){
+		decor = d;
+		creation=j;
 		gravite();
 	}
 	
@@ -53,6 +61,7 @@ public class Gravite {
 				c.setAngle(c.getAngle()+ estStable(c));
 				c.set_X(c.get_X()+estStable(c));
 			}
+			if(creation!=null) creation.repaint(); 
 		}
 	};
 	timer.scheduleAtFixedRate(timerTask,0,2);
