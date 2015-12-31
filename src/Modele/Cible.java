@@ -15,7 +15,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import Controlleur.Coord;
-import Vue.DecorDef;
+import Vue.Decor;
 
 /**
  * Classe cible, gerant les differents obstacles presents sur la carte
@@ -30,7 +30,7 @@ public class Cible extends Observable{
 	private Coord vect;
 	private boolean rond;
 	private double angle;
-	private DecorDef decor;
+	private Decor decor;
 	
 	public double getAngle() {
 		return angle;
@@ -60,7 +60,7 @@ public class Cible extends Observable{
 	 * Constructeur
 	 * @param d : decor
 	 */
-	public Cible(DecorDef d){
+	public Cible(Decor d){
 		decor = d;
 		touche = false;
 		taille = 50;
@@ -73,7 +73,6 @@ public class Cible extends Observable{
 			y = taille/2 + new Random().nextInt(d.getHauteur()-taille/2);
 		}
 		this.coord = new Coord(x,y);
-		d.getCibles().add(this);
 		this.vect = new Coord(new Random().nextInt(2),new Random().nextInt(2));
 		rond = new Random().nextBoolean();
 	}

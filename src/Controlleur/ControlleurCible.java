@@ -4,7 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import Modele.Cible;
-import Vue.DecorDef;
+import Vue.Decor;
 
 
 /**
@@ -24,7 +24,7 @@ public class ControlleurCible {
 	Cible cible;
 	
 	
-	public ControlleurCible(DecorDef d1,Cible c){
+	public ControlleurCible(Decor d1,Cible c){
 		cible =c;
 		trajectoireCible(c,d1,b);
 		
@@ -37,7 +37,7 @@ public class ControlleurCible {
 	 * Utilisation d'un timer
 	 * @param o
 	 */
-	public void trajectoireCible(final Cible c,final DecorDef d,final boolean b){
+	public void trajectoireCible(final Cible c,final Decor d,final boolean b){
 		final Timer timer = new Timer(); 
 		TimerTask timerTask = new TimerTask(){	
 			@Override

@@ -1,13 +1,13 @@
 package Builder;
 
 import Modele.Cible;
-import Vue.DecorDef;
+import Vue.Decor;
 
 public class Builder {
 	
-	private DecorDef decor;
+	private Decor decor;
 	
-	public Builder(DecorDef d){
+	public Builder(Decor d){
 		decor = d;
 	}
 	

@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 import Modele.Cible;
 import Modele.Oiseau;
-import Vue.DecorDef;
+import Vue.Decor;
 
 
 /**
@@ -16,7 +16,7 @@ import Vue.DecorDef;
  */
 public class Animation {
 
-	private DecorDef d;
+	private Decor d;
 	double t;
 	
 	double vitesse,angle;
@@ -26,7 +26,7 @@ public class Animation {
 	 * @param d1 : decor
 	 */
 	
-	public Animation(Oiseau o,DecorDef d1,double v,double a){
+	public Animation(Oiseau o,Decor d1,double v,double a){
 		d=d1;
 		vitesse =v;
 		angle=a;

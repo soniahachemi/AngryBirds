@@ -17,9 +17,10 @@ import javax.swing.JPanel;
 
 import Builder.Builder;
 import Controlleur.ControlleurCible;
+import Controlleur.Gravite;
 import Main.Main;
 import Modele.Oiseau;
-import Vue.DecorDef;
+import Vue.Decor;
 
 
 /**
@@ -71,11 +72,12 @@ public class Menu extends JPanel{
 		jouer.setContentAreaFilled(false);
 		jouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
-				DecorDef decor = new DecorDef(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
+				Decor decor = new Decor(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
 				decor.ajouterOiseau(new Oiseau(decor));
 				decor.ajouterOiseau(new Oiseau(decor));
 				Builder b = new Builder(decor);
 				b.tour();
+				new Gravite(decor);
 				Main.getFenetre().changerFond(decor);
 			}
 		});

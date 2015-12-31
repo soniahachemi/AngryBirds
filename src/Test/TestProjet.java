@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import Controlleur.Coord;
 import Modele.Cible;
-import Vue.DecorDef;
+import Vue.Decor;
 import Vue.Plan;
 /**
  * Classe TestProjet tests
@@ -66,7 +66,7 @@ public class TestProjet {
 		/**
 		 * Test du decor
 		 */
-		DecorDef dd = new DecorDef(1200, 600, 50, 25,25);
+		Decor dd = new Decor(1200, 600, 50, 25,25);
 		@Test
 		public final void testPlaceLibre() {
 

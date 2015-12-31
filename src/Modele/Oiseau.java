@@ -3,7 +3,7 @@ package Modele;
 import java.util.Observable;
 
 import Controlleur.Coord;
-import Vue.DecorDef;
+import Vue.Decor;
 
 /**
  * Classe Oiseau
@@ -15,7 +15,7 @@ public class Oiseau extends Observable {
 	// coord par rapport au plan
 	private Coord coord,prochaineCoord;
 	private int taille;
-	private DecorDef decor;
+	private Decor decor;
 	private boolean isFlying=false;
 	private boolean aFiniVol;
 	
@@ -23,7 +23,7 @@ public class Oiseau extends Observable {
 	 * Constructeur
 	 * @param d
 	 */
-	public Oiseau(DecorDef d){
+	public Oiseau(Decor d){
 		decor=d;
 		taille = 25;
 		this.coord = new Coord(-taille/2-40,taille/2);

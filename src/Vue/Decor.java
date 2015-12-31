@@ -27,7 +27,7 @@ import Modele.Oiseau;
  * @author Groupe L5
  *
  */
-public class DecorDef extends JPanel implements Observer {
+public class Decor extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	private final Plan plan;
@@ -61,7 +61,7 @@ public class DecorDef extends JPanel implements Observer {
 	 * @param posDebTraj
 	 * @param hautLP
 	 */
-	public DecorDef(int l, int h, int hautSol, int posDebTraj, int hautLP) {
+	public Decor(int l, int h, int hautSol, int posDebTraj, int hautLP) {
 		setLayout(null);
 
 		cibles = new ArrayList<Cible>();
@@ -104,7 +104,6 @@ public class DecorDef extends JPanel implements Observer {
 							double coteAdj = -oiseauSurLP.get_X();
 							tan = coteOppose / coteAdj;
 							angle = Math.toDegrees(Math.atan(tan));
-							System.out.println("cas 1");
 
 						}
 						if (oiseauSurLP.get_X() < 0 && oiseauSurLP.get_Y() > hauteurLP) {
@@ -112,7 +111,6 @@ public class DecorDef extends JPanel implements Observer {
 							double coteAdj = -oiseauSurLP.get_X();
 							tan = coteOppose / coteAdj;
 							angle = -Math.toDegrees(Math.atan(tan));
-							System.out.println("cas 2");
 
 						}
 						if (oiseauSurLP.get_X() > 0 && oiseauSurLP.get_Y() > hauteurLP) {
@@ -120,19 +118,16 @@ public class DecorDef extends JPanel implements Observer {
 							double coteAdj = oiseauSurLP.get_X();
 							tan = coteOppose / coteAdj;
 							angle = Math.toDegrees(Math.atan(tan)) + 180;
-							System.out.println("cas 3");
 						}
 						if (oiseauSurLP.get_X() > 0 && oiseauSurLP.get_Y() < hauteurLP) {
 							double coteOppose = oiseauSurLP.get_X();
 							double coteAdj = hauteurLP - oiseauSurLP.get_Y();
 							tan = coteOppose / coteAdj;
 							angle = 90 + Math.toDegrees(Math.atan(tan));
-							System.out.println("cas 4");
 						}
 						Coord coord2 = LancePierre.prochCoordDroite(25, oiseauSurLP.getCoord(),
 								new Coord(0, hauteurLP + oiseauSurLP.getTaille() / 2));
 						oiseauSurLP.setProchaineCoord(coord2);
-						System.out.println("angle " + angle);
 						drag = true;
 					}
 				}
