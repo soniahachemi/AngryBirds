@@ -127,9 +127,9 @@ public class Menu extends JPanel{
 		add(copyr);
 		
 		
-		JButton creation = new JButton("Mode création");
-		creation.setBounds(400,360,200,60);
-		creation.setFont(new Font("", Font.CENTER_BASELINE, 20));
+		JButton creation = new JButton("Mode creation");
+		creation.setBounds(400,360,200,70);
+		creation.setFont(new Font("", Font.ITALIC, 20));
 		creation.setForeground(new Color(175,168,106));
 		creation.setFocusPainted(false);
 		creation.setContentAreaFilled(false);
