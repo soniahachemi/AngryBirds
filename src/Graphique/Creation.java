@@ -3,6 +3,7 @@ package Graphique;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -30,6 +31,7 @@ public class Creation extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Decor decor;
+	private JLabel l1;
 	
 	
 	public Creation(){
@@ -59,7 +61,7 @@ public class Creation extends JPanel {
 			}
 		});
 	JButton jouer = new JButton("Jouer");
-	jouer.setBounds(500,30,200,60);
+	jouer.setBounds(760,30,200,80);
 	jouer.setFont(new Font("", Font.CENTER_BASELINE, 20));
 	jouer.setForeground(Color.RED);
 	jouer.setFocusPainted(false);
@@ -72,6 +74,14 @@ public class Creation extends JPanel {
 		}
 	});
 	add(jouer);
+	
+	l1 = new JLabel("Disposez les obstacles ou vous voulez, puis cliquez sur jouer :)");
+	l1.setBounds(100,50,900,45);
+	l1.setFont(new Font("", Font.PLAIN, 20));
+	l1.setForeground(Color.DARK_GRAY);
+	add(l1);
+	
+	
 	}	
 	
 	
