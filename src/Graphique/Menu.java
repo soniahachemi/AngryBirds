@@ -54,8 +54,8 @@ public class Menu extends JPanel{
 		
 		titre = new JLabel("Bienvenue sur Angry Birds !");
 		titre.setBounds(50,25,500,35);
-		titre.setFont(new Font("", Font.BOLD, 32));
-		titre.setForeground(Color.GREEN);
+		titre.setFont(new Font("", Font.BOLD, 30));
+		titre.setForeground(Color.MAGENTA);
 		add(titre);
 		
 		soustitre = new JLabel("Groupe L5");
