@@ -110,15 +110,15 @@ public class Menu extends JPanel{
 			}
 		});
 		add(credits);
-		
-		options = new JButton("Options");
+		/*
+		options = new JButton("Mode creation");
 		options.setBounds(700,230,200,60);
 		options.setFont(new Font("",Font.CENTER_BASELINE, 20));
 		options.setForeground(Color.RED);
 		options.setFocusPainted(false);
 		options.setContentAreaFilled(false);
 		add(options);
-			
+			*/
 		
 		copyr = new JLabel("Copyright Groupe L5 - Tous droits reserves");
 		copyr.setBounds(700, 520, 290, 20);
@@ -128,9 +128,9 @@ public class Menu extends JPanel{
 		
 		
 		JButton creation = new JButton("Mode creation");
-		creation.setBounds(400,360,200,70);
-		creation.setFont(new Font("", Font.ITALIC, 20));
-		creation.setForeground(new Color(175,168,106));
+		creation.setBounds(700,230,200,60);
+		creation.setFont(new Font("",Font.CENTER_BASELINE, 20));
+		creation.setForeground(Color.RED);
 		creation.setFocusPainted(false);
 		creation.setContentAreaFilled(false);
 		creation.addActionListener(new ActionListener() {
