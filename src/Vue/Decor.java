@@ -4,8 +4,11 @@ package Vue;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -14,10 +17,13 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Controlleur.Coord;
 import Controlleur.LancePierre;
+import Graphique.Menu;
+import Main.Main;
 import Modele.Cible;
 import Modele.Oiseau;
 
@@ -163,7 +169,22 @@ public class Decor extends JPanel implements Observer {
 			}
 
 		});
-	}
+		
+		
+		JButton jouer = new JButton("Retour au menu");
+		jouer.setBounds(760,30,200,80);
+		jouer.setFont(new Font("", Font.ITALIC, 18));
+		jouer.setForeground(Color.BLACK);
+		jouer.setFocusPainted(false);
+		jouer.setContentAreaFilled(false);
+		jouer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				Main.getFenetre().changerFond(new Menu());
+			}
+		});
+		add(jouer);
+		}
+	
 
 	public Oiseau oiseauSurLP() {
 		for (Oiseau o : oiseaux) {
