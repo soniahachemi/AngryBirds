@@ -42,7 +42,7 @@ public class Credits extends JPanel{
 		titre = new JLabel("Credits");
 		titre.setBounds(50,25,500,32);
 		titre.setFont(new Font("", Font.BOLD, 30));
-		titre.setForeground(Color.GREEN);
+		titre.setForeground(Color.MAGENTA);
 		add(titre);
 		
 		prec = new JButton("Retour");
@@ -58,25 +58,25 @@ public class Credits extends JPanel{
 		
 		cred1 = new JLabel("Jeu Angry Birds cree dans le cadre du DUT Informatique.");
 		cred1.setBounds(100,80,900,45);
-		cred1.setFont(new Font("", Font.PLAIN, 35));
+		cred1.setFont(new Font("", Font.PLAIN, 30));
 		cred1.setForeground(Color.DARK_GRAY);
 		add(cred1);
 		
 		cred2 = new JLabel("L'implementation de courbes est ici proposee, et permet");
 		cred2.setBounds(100,140,900,45);
-		cred2.setFont(new Font("", Font.PLAIN, 35));
+		cred2.setFont(new Font("", Font.PLAIN, 30));
 		cred2.setForeground(Color.DARK_GRAY);
 		add(cred2);
 		
 		cred3 = new JLabel("a l'utilisateur d'utiliser le jeu facilement, notamment");
 		cred3.setBounds(100,200,900,45);
-		cred3.setFont(new Font("", Font.PLAIN, 35));
+		cred3.setFont(new Font("", Font.PLAIN, 30));
 		cred3.setForeground(Color.DARK_GRAY);
 		add(cred3);
 		
 		cred4 = new JLabel("grâce au systeme du Drag & Drop (voir les regles du jeu).");
 		cred4.setBounds(100,260,900,45);
-		cred4.setFont(new Font("", Font.PLAIN, 35));
+		cred4.setFont(new Font("", Font.PLAIN, 30));
 		cred4.setForeground(Color.DARK_GRAY);
 		add(cred4);
 		
