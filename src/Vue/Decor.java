@@ -18,6 +18,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Builder.Builder;
@@ -57,6 +58,22 @@ public class Decor extends JPanel implements Observer {
 	private boolean drag = false;
 
 	private double angle, vitesse;
+	
+	JLabel affScore;
+	
+	
+	private int score;
+
+	public int getScore() {
+		return score;
+	}
+
+
+
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 	private Oiseau oiseauSurLP;
 
@@ -85,6 +102,10 @@ public class Decor extends JPanel implements Observer {
 		hauteurLP = hautLP;
 
 		posDep = posDebTraj;
+		score = 0;
+		affScore = new JLabel(""+score);
+		affScore.setFont(new Font("",Font.BOLD,30));
+		affScore.setBounds(10,10,200,100);
 
 		plan = new Plan(new Coord(posDep, hauteur - hauteurSol));
 		this.setRequestFocusEnabled(true);
@@ -205,6 +226,9 @@ public class Decor extends JPanel implements Observer {
 		});
 		add(restart);
 		
+		
+		add(affScore);
+		
 		}
 		
 		
@@ -239,6 +263,8 @@ public class Decor extends JPanel implements Observer {
 	@Override
 	public void paintComponent(Graphics g) {
 
+		score=0;
+		
 		g.setColor(new Color(91,158,238));
 		g.fillRect(0, 0, largeur, hauteur);
 		g.setColor(new Color(103,198,55));
@@ -258,6 +284,12 @@ public class Decor extends JPanel implements Observer {
 
 		// placement cibles
 			for(Cible c : cibles){
+				if(c.estTouche()) score+=3;
+				affScore.setText(""+score);
+				if(score>=20){
+					affScore.setText("Gagné !");
+					oiseaux.clear();
+				}
 				c.dessin(g);
 			
 			}
@@ -287,7 +319,7 @@ public class Decor extends JPanel implements Observer {
 				g2.draw(new Line2D.Float(cl.getX() - 10, cl.getY() + 20, cl.getX(), cl.getY()));
 			}
 		}
-
+	
 
 		revalidate();
 	}
