@@ -75,6 +75,7 @@ public class Menu extends JPanel{
 				Decor decor = new Decor(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
 				decor.ajouterOiseau(new Oiseau(decor));
 				decor.ajouterOiseau(new Oiseau(decor));
+				decor.ajouterOiseau(new Oiseau(decor));				
 				Builder b = new Builder(decor);
 				b.tour();
 				new Gravite(decor);
