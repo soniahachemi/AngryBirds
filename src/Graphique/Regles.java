@@ -54,31 +54,31 @@ public class Regles extends JPanel{
 		
 		cred1 = new JLabel("1/ Utilisez la souris pour lancer l'oiseau : ");
 		cred1.setBounds(100,80,900,45);
-		cred1.setFont(new Font("", Font.PLAIN, 25));
+		cred1.setFont(new Font("", Font.PLAIN, 22));
 		cred1.setForeground(Color.DARK_GRAY);
 		add(cred1);
 		
 		cred2 = new JLabel("    a/ Tirer vers l arriere pour augmenter sa vitesse");
 		cred2.setBounds(100,140,900,45);
-		cred2.setFont(new Font("", Font.PLAIN, 25));
+		cred2.setFont(new Font("", Font.PLAIN, 22));
 		cred2.setForeground(Color.DARK_GRAY);
 		add(cred2);
 		
 		cred3 = new JLabel("    b/ Incliner vers le haut ou le bas pour changer l angle");
 		cred3.setBounds(100,200,900,45);
-		cred3.setFont(new Font("", Font.PLAIN, 25));
+		cred3.setFont(new Font("", Font.PLAIN, 22));
 		cred3.setForeground(Color.DARK_GRAY);
 		add(cred3);
 		
 		cred4 = new JLabel("2/ Essayez de viser les obstacles : ceux-ci rapportent 3 points chacun");
 		cred4.setBounds(100,260,900,45);
-		cred4.setFont(new Font("", Font.PLAIN, 25));
+		cred4.setFont(new Font("", Font.PLAIN, 22));
 		cred4.setForeground(Color.DARK_GRAY);
 		add(cred4);
 		
 		cred5 = new JLabel("3/ Au bout de 20 points, vous avez gagné !");
 		cred5.setBounds(100,320,900,45);
-		cred5.setFont(new Font("", Font.PLAIN, 25));
+		cred5.setFont(new Font("", Font.PLAIN, 22));
 		cred5.setForeground(Color.DARK_GRAY);
 		add(cred5);
 		
