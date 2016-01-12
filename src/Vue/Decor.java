@@ -261,7 +261,15 @@ public class Decor extends JPanel implements Observer {
 			for(Cible c : cibles){
 				c.dessin(g);
 			
-			}			
+			}
+			try{
+				for(Coord c : pointsTraj){
+				g.setColor(Color.black);
+				g.fillOval(plan.plan_Concret(c).getX(), plan.plan_Concret(c).getY(), 2, 2);
+				}
+			}catch(Exception e){
+				
+			}
 
 		if (oiseauSurLP != null) {
 			int dist = new Coord(0, hauteurLP).distance(oiseauSurLP.getCoord());
