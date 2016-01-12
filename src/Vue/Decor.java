@@ -286,7 +286,7 @@ public class Decor extends JPanel implements Observer {
 			for(Cible c : cibles){
 				if(c.estTouche()) score+=3;
 				affScore.setText(""+score);
-				if(score>=20){
+				if(score>=16){
 					affScore.setText("Gagné !");
 					oiseaux.clear();
 				}
