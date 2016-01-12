@@ -70,13 +70,13 @@ public class Regles extends JPanel{
 		cred3.setForeground(Color.DARK_GRAY);
 		add(cred3);
 		
-		cred4 = new JLabel("2/ Essayez de visez les obstacles ! ceux-ci rapportent des points");
+		cred4 = new JLabel("2/ Essayez de viser les obstacles : ceux-ci rapportent 3 points chacun");
 		cred4.setBounds(100,260,900,45);
 		cred4.setFont(new Font("", Font.PLAIN, 25));
 		cred4.setForeground(Color.DARK_GRAY);
 		add(cred4);
 		
-		cred5 = new JLabel("3/ Marquez le plus de points possible ... !");
+		cred5 = new JLabel("3/ Au bout de 20 points, vous avez gagné !");
 		cred5.setBounds(100,320,900,45);
 		cred5.setFont(new Font("", Font.PLAIN, 25));
 		cred5.setForeground(Color.DARK_GRAY);
