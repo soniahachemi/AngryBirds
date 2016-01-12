@@ -108,7 +108,7 @@ public class Decor extends JPanel implements Observer {
 						vitesse = dist + 20;
 						angle = 0;
 						double tan = 0;
-						if (oiseauSurLP.get_X() < 0 && oiseauSurLP.get_Y() < hauteurLP) {
+						if (oiseauSurLP.get_X() <= 0 && oiseauSurLP.get_Y() <= hauteurLP) {
 							double coteOppose = hauteurLP - oiseauSurLP.get_Y();
 							double coteAdj = -oiseauSurLP.get_X();
 							tan = coteOppose / coteAdj;
@@ -128,7 +128,7 @@ public class Decor extends JPanel implements Observer {
 							tan = coteOppose / coteAdj;
 							angle = Math.toDegrees(Math.atan(tan)) + 180;
 						}
-						if (oiseauSurLP.get_X() > 0 && oiseauSurLP.get_Y() < hauteurLP) {
+						if (oiseauSurLP.get_X() >= 0 && oiseauSurLP.get_Y() <= hauteurLP) {
 							double coteOppose = oiseauSurLP.get_X();
 							double coteAdj = hauteurLP - oiseauSurLP.get_Y();
 							tan = coteOppose / coteAdj;
@@ -144,12 +144,9 @@ public class Decor extends JPanel implements Observer {
 		});
 		this.addMouseListener(new MouseListener() {
 
-			public void mouseReleased(MouseEvent bite) {
+			public void mouseReleased(MouseEvent me) {
 				// recuperation drag
 				if (drag) {
-					// if ((new Coord(bite.getX(),
-					// bite.getY()).distance(oiseauSurLP.getCoord())<=oiseauSurLP.getTaille())
-					// ) {
 					if (oiseauSurLP != null && !oiseauSurLP.isFlying() && !oiseauSurLP.aFiniVol()) {
 						lancePierre();
 
@@ -198,6 +195,8 @@ public class Decor extends JPanel implements Observer {
 				Decor decor = new Decor(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
 				decor.ajouterOiseau(new Oiseau(decor));
 				decor.ajouterOiseau(new Oiseau(decor));
+				decor.ajouterOiseau(new Oiseau(decor));
+
 				Builder b = new Builder(decor);
 				b.tour();
 				new Gravite(decor);
