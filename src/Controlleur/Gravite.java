@@ -84,8 +84,7 @@ public class Gravite {
 			}
 		}
 		for(Oiseau c2 : d.getOiseaux()){
-			if(!c2.getCoord().equals(c.getCoord())){
-				if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
+			/*if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
 					if(c2.get_Y()> c.get_Y() && c2.get_Y()<= c.get_Y()+c.getTaille()/2+c2.getTaille()/2){
 						if(c.get_X()<c2.get_X()) return -1;
 						else if(c.get_X()>c2.get_X())return +1;
@@ -94,7 +93,10 @@ public class Gravite {
 						if(c.get_X()<c2.get_X()) return -1;
 						else if(c.get_X()>c2.get_X())return +1;
 					}
-				}
+				}*/
+			if(c.getCoord().distance(c2.getCoord())<= c.getTaille()/2 + c.getTaille()/2){
+				if(c2.get_X()<c.get_X())return -1;
+				else return 1;
 			}
 		}
 		
