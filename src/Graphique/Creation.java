@@ -3,12 +3,13 @@ package Graphique;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Controlleur.Coord;
@@ -49,10 +50,16 @@ public class Creation extends JPanel {
 
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
+				boolean t = true;
+				for(Cible c2 : decor.getCibles()){
+					if(!Gravite.estPose(c2,decor)) t=false;
+				}
+				if(t){
 				Cible c = new Cible(decor);
 				c.setCoord(decor.getPlan().concret_Plan(new Coord(arg0.getX(),arg0.getY())));
 				decor.ajouterCible(c);
 				repaint();
+				}
 				}
 
 			public void mouseReleased(MouseEvent arg0) {
