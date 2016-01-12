@@ -49,6 +49,7 @@ public class Animation {
 			public void run()  { 
 				t+=0.015;
 				o.setCoord(coordParabole(t,vitesse,angle,0,d.getHauteurLP()));
+				if(o.get_X()%12==0)d.ajouterPoint(o.getCoord());
 				double t2 = t+0.002;
 				o.setProchaineCoord(coordParabole(t2,vitesse,angle,0,d.getHauteurLP()));
 				while(o.getCoord().distance(o.getProchaineCoord()) < o.getTaille()/2 + 10){
