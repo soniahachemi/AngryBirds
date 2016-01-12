@@ -24,10 +24,10 @@ public class Gravite {
 		gravite();
 	}
 	
-	public boolean estPose(Cible c){
+	public static boolean estPose(Cible c,Decor d){
 		if(c.get_Y()<=c.getTaille()/2 ) return true;
 		else{
-			for(Cible c2 : decor.getCibles()){
+			for(Cible c2 : d.getCibles()){
 				if(!c2.getCoord().equals(c.getCoord())){
 					if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
 						if(c2.get_Y()> c.get_Y() && c2.get_Y()<= c.get_Y()+c.getTaille()/2+c2.getTaille()/2) return true;
@@ -35,7 +35,7 @@ public class Gravite {
 					}
 				}
 			}
-			for(Oiseau c2 : decor.getOiseaux()){
+			for(Oiseau c2 : d.getOiseaux()){
 				if(!c2.getCoord().equals(c.getCoord())){
 					if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
 						if(c2.get_Y()> c.get_Y() && c2.get_Y()<= c.get_Y()+c.getTaille()/2+c2.getTaille()/2) return true;
@@ -57,9 +57,9 @@ public class Gravite {
 		@Override
 		public void run()  { 
 			for(Cible c : decor.getCibles()){
-				if(!estPose(c)) c.set_Y(c.get_Y()-1);
-				c.setAngle(c.getAngle()+ estStable(c));
-				c.set_X(c.get_X()+estStable(c));
+				if(!estPose(c,decor)) c.set_Y(c.get_Y()-1);
+				c.setAngle(c.getAngle()+ estStable(c,decor));
+				c.set_X(c.get_X()+estStable(c,decor));
 			}
 			if(creation!=null) creation.repaint(); 
 		}
@@ -68,8 +68,8 @@ public class Gravite {
 	
 	}
 	
-	private int estStable(Cible c) {
-		for(Cible c2 : decor.getCibles()){
+	public static int estStable(Cible c,Decor d) {
+		for(Cible c2 : d.getCibles()){
 			if(!c2.getCoord().equals(c.getCoord())){
 				if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
 					if(c2.get_Y()> c.get_Y() && c2.get_Y()<= c.get_Y()+c.getTaille()/2+c2.getTaille()/2){
@@ -83,7 +83,7 @@ public class Gravite {
 				}
 			}
 		}
-		for(Oiseau c2 : decor.getOiseaux()){
+		for(Oiseau c2 : d.getOiseaux()){
 			if(!c2.getCoord().equals(c.getCoord())){
 				if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
 					if(c2.get_Y()> c.get_Y() && c2.get_Y()<= c.get_Y()+c.getTaille()/2+c2.getTaille()/2){
