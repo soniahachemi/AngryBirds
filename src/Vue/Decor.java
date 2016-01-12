@@ -20,7 +20,9 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Builder.Builder;
 import Controlleur.Coord;
+import Controlleur.Gravite;
 import Controlleur.LancePierre;
 import Graphique.Menu;
 import Main.Main;
@@ -88,7 +90,8 @@ public class Decor extends JPanel implements Observer {
 		this.setRequestFocusEnabled(true);
 		this.requestFocus();
 		repaint();
-
+	
+	
 		this.addMouseMotionListener(new MouseMotionListener() {
 
 			public void mouseMoved(MouseEvent arg0) {
@@ -183,7 +186,29 @@ public class Decor extends JPanel implements Observer {
 			}
 		});
 		add(jouer);
+		
+		JButton restart = new JButton("Rejouer");
+		restart.setBounds(560,30,200,80);
+		restart.setFont(new Font("", Font.ITALIC, 18));
+		restart.setForeground(Color.BLACK);
+		restart.setFocusPainted(false);
+		restart.setContentAreaFilled(false);
+		restart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				Decor decor = new Decor(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
+				decor.ajouterOiseau(new Oiseau(decor));
+				decor.ajouterOiseau(new Oiseau(decor));
+				Builder b = new Builder(decor);
+				b.tour();
+				new Gravite(decor);
+				Main.getFenetre().changerFond(decor);
+			}
+		});
+		add(restart);
+		
 		}
+		
+		
 	
 
 	public Oiseau oiseauSurLP() {
