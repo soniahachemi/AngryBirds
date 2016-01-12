@@ -76,7 +76,7 @@ public class Regles extends JPanel{
 		cred4.setForeground(Color.DARK_GRAY);
 		add(cred4);
 		
-		cred5 = new JLabel("3/ Au bout de 20 points, vous avez gagné !");
+		cred5 = new JLabel("3/ Au bout de 16 points, vous avez gagné !");
 		cred5.setBounds(100,320,900,45);
 		cred5.setFont(new Font("", Font.PLAIN, 22));
 		cred5.setForeground(Color.DARK_GRAY);
