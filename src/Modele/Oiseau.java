@@ -26,8 +26,8 @@ public class Oiseau extends Observable {
 	public Oiseau(Decor d){
 		decor=d;
 		taille = 25;
-		this.coord = new Coord(-taille/2-40,taille/2);
-		prochaineCoord = new Coord(-taille/2-20,taille/2);
+		this.coord = new Coord(-taille/2-40*decor.getOiseaux().size(),taille/2);
+		prochaineCoord = new Coord(-taille/2-20*decor.getOiseaux().size(),taille/2);
 		aFiniVol=false;
 	}
 
