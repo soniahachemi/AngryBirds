@@ -205,8 +205,8 @@ public class Decor extends JPanel implements Observer {
 		});
 		add(jouer);
 		
-		JButton restart = new JButton("Rejouer");
-		restart.setBounds(560,30,200,80);
+		JButton restart = new JButton("Niveau 1");
+		restart.setBounds(360,30,200,80);
 		restart.setFont(new Font("", Font.ITALIC, 18));
 		restart.setForeground(Color.BLACK);
 		restart.setFocusPainted(false);
@@ -226,6 +226,26 @@ public class Decor extends JPanel implements Observer {
 		});
 		add(restart);
 		
+		JButton niveau2 = new JButton("Niveau 2");
+		niveau2.setBounds(560,30,200,80);
+		niveau2.setFont(new Font("", Font.ITALIC, 18));
+		niveau2.setForeground(Color.BLACK);
+		niveau2.setFocusPainted(false);
+		niveau2.setContentAreaFilled(false);
+		niveau2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0){
+				Decor decor = new Decor(Main.getFenetre().getContentPane().getWidth(),Main.getFenetre().getContentPane().getHeight(),40,125,100);
+				decor.ajouterOiseau(new Oiseau(decor));
+				decor.ajouterOiseau(new Oiseau(decor));
+				
+
+				Builder b = new Builder(decor);
+				b.tour2();
+				new Gravite(decor);
+				Main.getFenetre().changerFond(decor);
+			}
+		});
+		add(niveau2);
 		
 		add(affScore);
 		

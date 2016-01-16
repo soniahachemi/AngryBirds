@@ -77,6 +77,7 @@ public class Creation extends JPanel {
 		public void actionPerformed(ActionEvent arg0){
 			decor.ajouterOiseau(new Oiseau(decor));
 			decor.ajouterOiseau(new Oiseau(decor));
+			decor.ajouterOiseau(new Oiseau(decor));
 			Main.getFenetre().changerFond(decor);
 		}
 	});
