@@ -22,11 +22,13 @@ public class ControlleurCible {
 	double t = 0;
 	boolean b = false;
 	Cible cible;
+	double vitesse=0;
 	
 	
-	public ControlleurCible(Decor d1,Cible c){
+	public ControlleurCible(Decor d1,Cible c,double v){
 		cible =c;
 		trajectoireCible(c,d1,b);
+		vitesse=v;
 		
 	}
 	
@@ -43,7 +45,7 @@ public class ControlleurCible {
 			@Override
 			public void run()  { 
 				t+=1;
-				if(t>10){
+				if(t>vitesse/10){
 					timer.cancel();
 				}
 				else{ 
@@ -53,6 +55,7 @@ public class ControlleurCible {
 				}
 			}
 		};
-		timer.scheduleAtFixedRate(timerTask,0,50);
+		
+		timer.scheduleAtFixedRate(timerTask,0,60);
 	}
 }

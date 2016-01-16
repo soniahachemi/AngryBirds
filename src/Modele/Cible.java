@@ -24,6 +24,16 @@ import Vue.Decor;
  */
 public class Cible extends Observable{
 
+	static int numero = 0;
+	private int numPerso;
+	
+	public int getNumPerso() {
+		return numPerso;
+	}
+
+	public void setNumPerso(int numPerso) {
+		numPerso = numPerso;
+	}
 	private Coord coord;
 	private boolean touche;
 	private int taille;
@@ -64,6 +74,8 @@ public class Cible extends Observable{
 		decor = d;
 		touche = false;
 		taille = 50;
+		numero++;
+		this.numPerso=numero;
 		
 		//calcule les coords des cibles en random sur la carte
 		int x = d.getposDep()+ new Random().nextInt(d.getLargeur()-d.getposDep());

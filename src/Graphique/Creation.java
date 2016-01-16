@@ -43,29 +43,19 @@ public class Creation extends JPanel {
 		this.addMouseListener(new MouseListener() {
 			//Cible c;
 			public void mouseClicked(MouseEvent arg0) {}
-
 			public void mouseEntered(MouseEvent arg0) {}
-
 			public void mouseExited(MouseEvent arg0) {}
 
 			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				boolean t = true;
-				for(Cible c2 : decor.getCibles()){
-					if(!Gravite.estPose(c2,decor)) t=false;
+				if(Gravite.estStable(decor)){
+					Cible c = new Cible(decor);
+					c.setCoord(decor.getPlan().concret_Plan(new Coord(arg0.getX(),arg0.getY())));
+					decor.ajouterCible(c);
+					repaint();
 				}
-				if(t){
-				Cible c = new Cible(decor);
-				c.setCoord(decor.getPlan().concret_Plan(new Coord(arg0.getX(),arg0.getY())));
-				decor.ajouterCible(c);
-				repaint();
-				}
-				}
-
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				//if(c!=null)
 			}
+
+			public void mouseReleased(MouseEvent arg0) {}
 		});
 	JButton jouer = new JButton("Jouer");
 	jouer.setBounds(760,30,200,80);

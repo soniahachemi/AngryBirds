@@ -50,6 +50,22 @@ public class Gravite {
 		return false;
 	}
 	
+	public static boolean estStable(Decor d){
+		for(Cible c : d.getCibles())
+			if(!estPose(c, d)) return false;
+		return true;
+	}
+	
+	
+	public static boolean estPoseSur(Cible dessus,Cible dessous){
+		if(dessus.equals(dessous))return false;
+		if(dessus.get_Y()<dessous.get_Y()) return false;
+		if(dessus.get_Y()-dessous.get_Y() <= dessus.getTaille()/2 + dessous.getTaille()/2){
+			if(Math.abs(dessus.get_X()-dessous.get_X())<= dessus.getTaille()/2 + dessous.getTaille()/2 ) return true;
+		}
+	return false;
+	}
+	
 	
 	public void gravite(){
 	final Timer timer = new Timer(); 
@@ -70,37 +86,11 @@ public class Gravite {
 	
 	public static int estStable(Cible c,Decor d) {
 		for(Cible c2 : d.getCibles()){
-			if(!c2.getCoord().equals(c.getCoord())){
-				if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
-					if(c2.get_Y()> c.get_Y() && c2.get_Y()<= c.get_Y()+c.getTaille()/2+c2.getTaille()/2){
-						if(c.get_X()<c2.get_X()) return -1;
-						else if(c.get_X()>c2.get_X())return +1;
-					}
-					else if(c.get_Y()<= c2.get_Y()+c2.getTaille()/2+c.getTaille()/2){
-						if(c.get_X()<c2.get_X()) return -1;
-						else if(c.get_X()>c2.get_X())return +1;
-					}
-				}
+			if(estPoseSur(c, c2)){
+				if(c.get_X()<c2.get_X()) return -1;
+				else if (c.get_X()>c2.get_X()) return +1;
 			}
 		}
-		for(Oiseau c2 : d.getOiseaux()){
-			/*if(Math.abs(c2.get_X()-c.get_X()) <= c.getTaille()/2+c2.getTaille()/2 ){
-					if(c2.get_Y()> c.get_Y() && c2.get_Y()<= c.get_Y()+c.getTaille()/2+c2.getTaille()/2){
-						if(c.get_X()<c2.get_X()) return -1;
-						else if(c.get_X()>c2.get_X())return +1;
-					}
-					else if(c.get_Y()<= c2.get_Y()+c2.getTaille()/2+c.getTaille()/2){
-						if(c.get_X()<c2.get_X()) return -1;
-						else if(c.get_X()>c2.get_X())return +1;
-					}
-				}*/
-			if(c.getCoord().distance(c2.getCoord())<= c.getTaille()/2 + c.getTaille()/2){
-				if(c2.get_X()<c.get_X())return -1;
-				else return 1;
-			}
-		}
-		
-		
 		return 0;
 	}
 	
